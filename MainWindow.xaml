@@ -1,0 +1,101 @@
+﻿<Window x:Class="QLTT_CSYT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTT_CSYT"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="320"
+        Width="520"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/login_screen.png"
+                        TileMode="None" />
+        </Grid.Background>
+        <StackPanel Margin="10,40,0,0"
+                    Width="250"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Margin="0,0,0,20"
+                       Text="HỆ THỐNG QLTT CSYT "
+                       FontSize="24"
+                       TextAlignment="Center"
+                       Foreground="Red"
+                       FontWeight="Bold">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0.5" />
+                </TextBlock.Background>
+            </TextBlock>
+
+            <TextBox x:Name="tbUsername"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     VerticalAlignment="Top"
+                     materialDesign:HintAssist.Hint="Tên đăng nhập (CMND)"
+                     Background="White" />
+            <PasswordBox x:Name="tbPass"
+                         Margin="0,15,0,0"
+                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                         VerticalAlignment="Top"
+                         materialDesign:HintAssist.Hint="Mật khẩu"
+                         Background="White" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnLoggin"
+                        Grid.Column="0"
+                        Margin="0,15,5,0"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="35"
+                        materialDesign:ButtonAssist.CornerRadius="15"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Click="btnLoggin_Click">
+                    <TextBlock Text="Đăng nhập" />
+                </Button>
+
+                <Button x:Name="btnClose"
+                        Grid.Column="1"
+                        Margin="5,15,0,0"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="35"
+                        Background="#FFDC4D4D"
+                        materialDesign:ButtonAssist.CornerRadius="15"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Click="btnClose_Click">
+                    <TextBlock Text="Thoát" />
+                </Button>
+
+            </Grid>
+
+            <TextBlock x:Name="txtWarning"
+                       Margin="0,20,0,0"
+                       Text="-"
+                       Foreground="Red"
+                       TextWrapping="Wrap"
+                       FontSize="16"
+                       TextAlignment="Center">
+            </TextBlock>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -34,7 +34,7 @@ namespace QLTT_CSYT
         private void LoadDataGridView()
         {
             string sql;
-            sql = "SELECT USERNAME, ACCOUNT_STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
+            sql = "SELECT USER_ID, USERNAME, ACCOUNT_STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
                 "FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'USERS'";
 
             tblUser = Class.Functions.GetDataToTable(sql); //Đọc dữ liệu từ bảng
@@ -47,17 +47,6 @@ namespace QLTT_CSYT
             dgvUser.AutoGenerateColumns = true;
             
 
-        }
-
-        private void dgvUser_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            e.Cancel = true;
-        }
-
-        private void dgvUser_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            e.Cancel= true;
-            
         }
     }
 }

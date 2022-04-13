@@ -94,11 +94,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin_GrantPrivxaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin_Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin_UserList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin_UserPriv.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,11 +121,17 @@
     <Compile Include="Admin_Dashboard.xaml.cs">
       <DependentUpon>Admin_Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin_GrantPrivxaml.xaml.cs">
+      <DependentUpon>Admin_GrantPrivxaml.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin_Main.xaml.cs">
       <DependentUpon>Admin_Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin_UserList.xaml.cs">
       <DependentUpon>Admin_UserList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_UserPriv.xaml.cs">
+      <DependentUpon>Admin_UserPriv.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

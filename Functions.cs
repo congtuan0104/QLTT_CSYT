@@ -37,7 +37,7 @@ namespace QLTT_CSYT.Class
                 if (Con.State == ConnectionState.Closed)
                 {
                     Con.Open();
-                    MessageBox.Show("Đăng nhập thành công");
+                    //MessageBox.Show("Đăng nhập thành công");
               
                     return true;
                 }
@@ -56,7 +56,7 @@ namespace QLTT_CSYT.Class
                 Con.Close();   	//Đóng kết nối
                 Con.Dispose(); 	//Giải phóng tài nguyên
                 Con = null;
-                MessageBox.Show("Đã đóng kết nối");
+                MessageBox.Show("Đã ngắt kết nối");
             }
         }
 

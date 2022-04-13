@@ -10,15 +10,122 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="#FFE5E5E5"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Dashboard"
-        Height="750" Width="1180"
+        Height="750"
+        Width="1180"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,1180,750"
+                           RadiusX="10"
+                           RadiusY="10" />
+    </Window.Clip>
+    
     <Grid>
-        <TextBlock Text="Welcome"
-                   FontSize="20" />
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="250">
+                    <StackPanel Margin="16">
+                        <TextBlock Margin="4"
+                                   HorizontalAlignment="Center"
+                                   Text="MENU"
+                                   FontSize="24" />
+                        <Button x:Name="btnDashboard"
+                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                CommandParameter="{x:Static Dock.Left}"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Content="DASHBOARD"
+                                Click="btnDashboard_Click" />
+                        <Button x:Name="btnUserList"
+                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Content="USER LIST"
+                                Click="btnUserList_Click" />
+                        <Button x:Name="btnGrantPriv"
+                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Content="GRANT/REVOKE PRIVILEGES" />
+                        <Button x:Name="btnUserPriv"
+                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Content="USER/ROLE PRIVILEGES" />
+                        <Button x:Name="btn_Logout"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Content="LOG OUT"
+                                Click="btnLogout_Click" />
+                    </StackPanel>
+
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <materialDesign:ColorZone Padding="16,10,12,10"
+                                          
+                                         
+                                          DockPanel.Dock="Top">
+                    <materialDesign:ColorZone.Background>
+                        <SolidColorBrush Color="#FFE5E5E5"
+                                         />
+                    </materialDesign:ColorZone.Background>
+                    <DockPanel>
+                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                                      IsChecked="False"
+                                      x:Name="MenuToggleButton"
+                                      Foreground="#FF424242" />
+
+                        <Button x:Name="btnClose"
+                                Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                DockPanel.Dock="Right"
+                                Click="btnClose_Click">
+                            <materialDesign:PackIcon Kind="CloseThick"
+                                                     Height="30"
+                                                     Width="30"
+                                                     Foreground="#DDFF0B0B" />
+                        </Button>
+                        <TextBlock x:Name="txtTitle"
+                                   Text="Dashboard"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="#FF424242"
+                                   FontSize="22">
+                        </TextBlock>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                             x:Name="MainSnackbar"
+                                             Grid.Row="1" />
+                    
+
+                    <Frame x:Name="frBody"
+                           NavigationUIVisibility="Hidden"
+                           Grid.Row="1">
+                        
+                    </Frame>
+
+
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+        
     </Grid>
 </Window>

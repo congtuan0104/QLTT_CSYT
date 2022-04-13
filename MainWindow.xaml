@@ -20,6 +20,11 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         WindowStyle="None">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,520,320"
+                           RadiusX="10"
+                           RadiusY="10" />
+    </Window.Clip>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/login_screen.png"

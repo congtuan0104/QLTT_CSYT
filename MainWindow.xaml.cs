@@ -46,6 +46,14 @@ namespace QLTT_CSYT
                 return;
             }
 
+            //Dùng để đăng nhập nhanh (chỉ dùng khi test)
+            if (username == "1" && password == "1")
+            {
+                username = "tc_admin";
+                password = "admintc123";
+            }
+
+
 
             bool isConnect = Class.Functions.Connect(username, password);
             if (isConnect)

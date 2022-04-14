@@ -48,5 +48,11 @@ namespace QLTT_CSYT
             
 
         }
+
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_AddUser admin_AddUser = new Admin_AddUser();
+            admin_AddUser.Show();
+        }
     }
 }

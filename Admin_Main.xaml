@@ -10,7 +10,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="#FFE5E5E5"
+        Background="#FF627DD2"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Dashboard"
@@ -25,107 +25,153 @@
                            RadiusX="10"
                            RadiusY="10" />
     </Window.Clip>
-    
+
     <Grid>
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="250">
                     <StackPanel Margin="16">
-                        <TextBlock Margin="4"
-                                   HorizontalAlignment="Center"
+                        <TextBlock Margin="8,0,0,10"
                                    Text="MENU"
-                                   FontSize="24" />
-                        <Button x:Name="btnDashboard"
-                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                CommandParameter="{x:Static Dock.Left}"
-                                Margin="4"
-                                HorizontalAlignment="Left"
-                                Style="{DynamicResource MaterialDesignFlatButton}"
-                                Content="DASHBOARD"
-                                Click="btnDashboard_Click" />
-                        <Button x:Name="btnUserList"
-                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                Margin="4"
-                                HorizontalAlignment="Left"
-                                Style="{DynamicResource MaterialDesignFlatButton}"
-                                Content="USER LIST"
-                                Click="btnUserList_Click" />
-                        <Button x:Name="btnGrantPriv"
-                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                Margin="4"
-                                HorizontalAlignment="Left"
-                                Style="{DynamicResource MaterialDesignFlatButton}"
-                                Content="GRANT/REVOKE PRIVILEGES" />
-                        <Button x:Name="btnUserPriv"
-                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                Margin="4"
-                                HorizontalAlignment="Left"
-                                Style="{DynamicResource MaterialDesignFlatButton}"
-                                Content="USER/ROLE PRIVILEGES" />
-                        <Button x:Name="btn_Logout"
-                                Margin="4"
-                                HorizontalAlignment="Left"
-                                Style="{DynamicResource MaterialDesignFlatButton}"
-                                Content="LOG OUT"
-                                Click="btnLogout_Click" />
+                                   FontSize="26" />
+                        <ListBox x:Name="listbMenu"
+                                 SelectionChanged="menu">
+                            
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="HOME" 
+                                           FontSize="16"/>
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="ALL USERS"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="USER/ROLE PRIVILEGES"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="GRANT/REVOKE PRIVILEGES"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="LOG OUT"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                        </ListBox>
                     </StackPanel>
 
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
-                <materialDesign:ColorZone Padding="16,10,12,10"
-                                          
-                                         
+                <materialDesign:ColorZone Padding="16,8,12,8"
                                           DockPanel.Dock="Top">
                     <materialDesign:ColorZone.Background>
-                        <SolidColorBrush Color="#FFE5E5E5"
-                                         />
+                        <SolidColorBrush Color="#FF627DD2" />
                     </materialDesign:ColorZone.Background>
                     <DockPanel>
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
                                       IsChecked="False"
                                       x:Name="MenuToggleButton"
-                                      Foreground="#FF424242" />
-
-                        <Button x:Name="btnClose"
-                                Style="{DynamicResource MaterialDesignToolForegroundButton}"
-                                DockPanel.Dock="Right"
-                                Click="btnClose_Click">
-                            <materialDesign:PackIcon Kind="CloseThick"
-                                                     Height="30"
-                                                     Width="30"
-                                                     Foreground="#DDFF0B0B" />
-                        </Button>
+                                      Foreground="White" />
                         <TextBlock x:Name="txtTitle"
                                    Text="Dashboard"
                                    Margin="10,0,0,0"
+                                   Width="300"
                                    VerticalAlignment="Center"
-                                   Foreground="#FF424242"
-                                   FontSize="22">
+                                   Foreground="White"
+                                   FontSize="24"
+                                   HorizontalAlignment="Left">
                         </TextBlock>
+                        <materialDesign:ColorZone Mode="Standard"
+                                                  Padding="8 4 8 4"
+                                                  Width="400"
+                                                  CornerRadius="5"
+                                                  Panel.ZIndex="1"
+                                                  materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Button Style="{DynamicResource MaterialDesignToolButton}">
+                                    <materialDesign:PackIcon Kind="Search"
+                                                             Opacity=".56"
+                                                             Height="22"
+                                                             Width="22" />
+                                </Button>
+                                <TextBox Grid.Column="1"
+                                         Margin="8 0 0 0"
+                                         materialDesign:HintAssist.Hint="Nhập thông tin cần tìm"
+                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                         BorderThickness="0"
+                                         MinWidth="200"
+                                         FontSize="14"
+                                         VerticalAlignment="Center" />
+
+                            </Grid>
+                        </materialDesign:ColorZone>
+
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                ToolTip="MaterialDesignIconButton"
+                                DockPanel.Dock="Right"
+                                Click="btnClose_Click"
+                                Background="#DDF74949"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Width="30"
+                                Height="30">
+                            <materialDesign:PackIcon Kind="CloseThick"
+                                                     Height="20"
+                                                     Width="20"
+                                                     Foreground="White" />
+                        </Button>
+                        <TextBlock Text="Admin"
+                                   Margin="3,0,60,0"
+                                   FontSize="22"
+                                   DockPanel.Dock="Right"
+                                   Foreground="White"
+                                   VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="AccountCircleOutline"
+                                                 Height="30"
+                                                 Width="30"
+                                                 Foreground="White"
+                                                 DockPanel.Dock="Right"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Right" />
+
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="283*" />
+                        <ColumnDefinition Width="897*" />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
+
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
                                              x:Name="MainSnackbar"
-                                             Grid.Row="1" />
-                    
+                                             Grid.Row="1"
+                                             Grid.Column="1"
+                                             HorizontalAlignment="Left"
+                                             Margin="163,0,0,0" />
+
 
                     <Frame x:Name="frBody"
                            NavigationUIVisibility="Hidden"
-                           Grid.Row="1">
-                        
+                           Grid.Row="1"
+                           Grid.ColumnSpan="2">
+
                     </Frame>
 
 
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
-        
+
     </Grid>
 </Window>

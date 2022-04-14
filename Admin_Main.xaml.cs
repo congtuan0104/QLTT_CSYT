@@ -24,16 +24,7 @@ namespace QLTT_CSYT
             InitializeComponent();
             Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
             frBody.Content = admin_Dashboard.Content;
-            txtTitle.Text = "Dashboard";
-        }
-
-        private void btnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            
-            Class.Functions.Disconnect();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            txtTitle.Text = "Home";
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -42,18 +33,47 @@ namespace QLTT_CSYT
             Environment.Exit(0);
         }
 
-        private void btnUserList_Click(object sender, RoutedEventArgs e)
-        {
-            Admin_UserList admin_UserList = new Admin_UserList();
-            frBody.Content = admin_UserList.Content;
-            txtTitle.Text = "User List";
-        }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
+        private void menu(object sender, SelectionChangedEventArgs e)
         {
-            Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
-            frBody.Content = admin_Dashboard.Content;
-            txtTitle.Text = "Dashboard";
+            ListBox lb = sender as ListBox;
+            ListBoxItem lbi = lb.SelectedItem as ListBoxItem;
+            TextBlock tb = (TextBlock)lbi.Content;
+            string select = tb.Text;
+
+
+            if (select == "HOME")
+            {
+                Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
+                frBody.Content = admin_Dashboard.Content;
+                txtTitle.Text = "Home";
+            }
+            else if (select == "ALL USERS")
+            {
+                Admin_UserList admin_UserList = new Admin_UserList();
+                frBody.Content = admin_UserList.Content;
+                txtTitle.Text = "All users";
+            }
+            else if(select == "USER/ROLE PRIVILEGES")
+            {
+                Admin_UserPriv admin_UserPriv = new Admin_UserPriv();
+                frBody.Content = admin_UserPriv.Content;
+                txtTitle.Text = "User/Role Privileges";
+            }
+            else if (select == "GRANT/REVOKE PRIVILEGES")
+            {
+                Admin_GrantPrivxaml admin_GrantPrivxaml = new Admin_GrantPrivxaml();
+                frBody.Content = admin_GrantPrivxaml.Content;
+                txtTitle.Text = "Grant/Revoke Privileges";
+            }
+            else
+            {
+                Class.Functions.Disconnect();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+
         }
     }
 }

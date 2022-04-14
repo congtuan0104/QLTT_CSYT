@@ -17,6 +17,6 @@
         Height="693"
         Width="1180">
     <Grid>
-
+        <TextBlock Text="User/Role Privs" />
     </Grid>
 </Window>

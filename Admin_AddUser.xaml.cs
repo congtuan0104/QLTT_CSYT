@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace QLTT_CSYT
 {
     /// <summary>
-    /// Interaction logic for Admin_Dashboard.xaml
+    /// Interaction logic for Admin_AddUser.xaml
     /// </summary>
-    public partial class Admin_Dashboard : Window
+    public partial class Admin_AddUser : Window
     {
-        public Admin_Dashboard()
+        public Admin_AddUser()
         {
             InitializeComponent();
-        }
-
-        private void btnAllUser_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

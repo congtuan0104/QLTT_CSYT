@@ -27,7 +27,8 @@
     </Window.Clip>
 
     <Grid>
-        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+        <materialDesign:DrawerHost x:Name="drawer"
+                                   IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="250">
                     <StackPanel Margin="16">
@@ -36,10 +37,11 @@
                                    FontSize="26" />
                         <ListBox x:Name="listbMenu"
                                  SelectionChanged="menu">
-                            
-                            <ListBoxItem Height="44">
-                                <TextBlock Text="HOME" 
-                                           FontSize="16"/>
+
+                            <ListBoxItem Height="44" >
+                                <TextBlock Text="HOME"
+                                           
+                                           FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
                                 <TextBlock Text="ALL USERS"
@@ -63,7 +65,7 @@
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
-                <materialDesign:ColorZone Padding="16,8,12,8"
+                <materialDesign:ColorZone Padding="16,12,12,8"
                                           DockPanel.Dock="Top">
                     <materialDesign:ColorZone.Background>
                         <SolidColorBrush Color="#FF627DD2" />
@@ -128,7 +130,7 @@
                                                      Foreground="White" />
                         </Button>
                         <TextBlock Text="Admin"
-                                   Margin="3,0,60,0"
+                                   Margin="3,0,40,0"
                                    FontSize="22"
                                    DockPanel.Dock="Right"
                                    Foreground="White"
@@ -144,30 +146,18 @@
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="283*" />
-                        <ColumnDefinition Width="897*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
-                                             x:Name="MainSnackbar"
-                                             Grid.Row="1"
-                                             Grid.Column="1"
-                                             HorizontalAlignment="Left"
-                                             Margin="163,0,0,0" />
-
+                    
 
                     <Frame x:Name="frBody"
                            NavigationUIVisibility="Hidden"
-                           Grid.Row="1"
-                           Grid.ColumnSpan="2">
+                           >
 
                     </Frame>
 
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                             x:Name="MainSnackbar" 
+                                             HorizontalAlignment="Left"
+                                             Margin="163,0,0,0" />
 
                 </Grid>
             </DockPanel>

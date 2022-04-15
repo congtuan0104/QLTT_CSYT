@@ -94,6 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin_ChangePass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin_Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +128,9 @@
     </Page>
     <Compile Include="Admin_AddUser.xaml.cs">
       <DependentUpon>Admin_AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_ChangePass.xaml.cs">
+      <DependentUpon>Admin_ChangePass.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin_Dashboard.xaml.cs">
       <DependentUpon>Admin_Dashboard.xaml</DependentUpon>

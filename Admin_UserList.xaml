@@ -17,10 +17,11 @@
         Height="693"
         Width="1180"
         Initialized="Admin_User_Loading">
-    <StackPanel>
+    <StackPanel Orientation="Horizontal">
         <DataGrid x:Name="dgvUser"
                   ItemsSource="{Binding}"
-                  Height="610"
+                  Height="660"
+                  Width="950"
                   CanUserAddRows="False"
                   SelectionUnit="FullRow"
                   SelectionMode="Extended"
@@ -28,59 +29,92 @@
                   FontSize="14"
                   IsReadOnly="True"
                   materialDesign:DataGridAssist.CellPadding="24 14 14 14"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" />
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14"                
+                  SelectionChanged="dgvUser_RowContentClick" />
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="0,10,0,0"
-                    HorizontalAlignment="Center">
-            <Button x:Name="btnAddUser"
-                    Style="{StaticResource MaterialDesignPaperLightButton}"
-                    Width="160"
-                    Height="50"
-                    Margin="0,0,35,0"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton"
-                    Content="ADD USER"
-                    IsEnabled="True"
-                    Click="btnAddUser_Click" />
 
-            <Button Style="{StaticResource MaterialDesignPaperLightButton}"
-                    Width="160"
-                    Height="50"
-                    Margin="0,0,35,0"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton"
-                    Content="DELETE USER"
-                    IsEnabled="False" />
+        <Grid Background="White"
+              Width="180"
+              Height="660"
+              Margin="0,10,0,10">
+            <Grid.Clip>
+                <RectangleGeometry Rect="0,0,180,660"
+                                   RadiusX="10"
+                                   RadiusY="10" />
+            </Grid.Clip>
+            <StackPanel Orientation="Vertical"
+                        Margin="10,15,10,15"
+                        HorizontalAlignment="Center">
+                <Button x:Name="btnAddUser"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="160"
+                        Height="50"
+                        Margin="0,0,0,20"
+                        Background="#FF42429D"
+                        Foreground="White"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="ADD USER"
+                        IsEnabled="True"
+                        Click="btnAddUser_Click" />
 
-            <Button Style="{StaticResource MaterialDesignPaperLightButton}"
-                    Width="160"
-                    Height="50"
-                    Margin="0,0,35,0"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton"
-                    Content="DETAIL"
-                    IsEnabled="False" />
+                <Button x:Name="btnDeleteUser"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="160"
+                        Height="50"
+                        Background="#FF42429D"
+                        Foreground="White"
+                        Margin="0,0,0,20"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="DELETE USER"
+                        IsEnabled="False"
+                        Click="btnDeleteUser_Click" />
 
-            <Button Style="{StaticResource MaterialDesignPaperLightButton}"
-                    Width="160"
-                    Height="50"
-                    Margin="0,0,35,0"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton"
-                    Content="CHANGE PASSWORD"
-                    IsEnabled="False" />
-            <Button Style="{StaticResource MaterialDesignPaperLightButton}"
-                    Width="160"
-                    Height="50"
-                    Margin="0,0,35,0"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton"
-                    Content="LOCK USER"
-                    IsEnabled="False" />
-            <Button Style="{StaticResource MaterialDesignPaperLightButton}"
-                    Width="160"
-                    Height="50"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton"
-                    Content="UNLOCK USER"
-                    IsEnabled="False" />
+                <Button x:Name="btnDetail"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="160"
+                        Height="50"
+                        Background="#FF42429D"
+                        Foreground="White"
+                        Margin="0,0,0,20"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="DETAIL"
+                        IsEnabled="False" />
 
-        </StackPanel>
+                <Button x:Name="btnChangePass"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="160"
+                        Height="50"
+                        Background="#FF42429D"
+                        Foreground="White"
+                        Margin="0,0,0,20"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="CHANGE PASSWORD"
+                        IsEnabled="False"
+                        Click="btnChangePass_Click" />
+                <Button x:Name="btnLock"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="160"
+                        Height="50"
+                        Background="#FF42429D"
+                        Foreground="White"
+                        Margin="0,0,0,20"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="LOCK USER"
+                        IsEnabled="False"
+                        Click="btnLock_Click" />
+                <Button x:Name="btnUnlock"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="160"
+                        Height="50"
+                        Background="#FF42429D"
+                        Foreground="White"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="UNLOCK USER"
+                        IsEnabled="False"
+                        Click="btnUnlock_Click" />
+
+            </StackPanel>
+        </Grid>
 
     </StackPanel>
 </Window>

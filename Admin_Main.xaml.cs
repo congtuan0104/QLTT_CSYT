@@ -74,6 +74,8 @@ namespace QLTT_CSYT
                 this.Close();
             }
 
+            drawer.IsLeftDrawerOpen = false;
+
         }
     }
 }

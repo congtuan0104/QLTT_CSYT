@@ -5,10 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLTT_CSYT"
         mc:Ignorable="d"
-        Title="Thêm người dùng mới" Height="320" Width="520"
+        Title="Thêm người dùng mới"
+        Height="420"
+        Width="520"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
+
     <Grid>
-        <TextBlock Text="Thêm user/role" />
+
+
+        <Button Click="btnName_Click"
+                x:Name="btnName"
+                Width="100"
+                Margin="220,232,200,40">Thêm mới</Button>
+
+        <RadioButton x:Name="user"
+                     Content="User"
+                     HorizontalAlignment="Left"
+                     Margin="10,34,0,0"
+                     VerticalAlignment="Top"
+                     Checked="rdChecked" />
+
+        <RadioButton x:Name="role"
+                     Content="Role"
+                     HorizontalAlignment="Left"
+                     Margin="445,37,0,0"
+                     VerticalAlignment="Top"
+                     Grid.ColumnSpan="2"
+                     Checked="rdChecked"/>
+
+        <ComboBox x:Name="cbRole"
+                  HorizontalAlignment="Left"
+                  Margin="8,189,0,0"
+                  VerticalAlignment="Top"
+                  Width="120"
+                  IsEnabled="False">
+            <ComboBoxItem Content="KHONG" />
+            <ComboBoxItem Content="BACSI" />
+            <ComboBoxItem Content="BENHNHAN" />
+            <ComboBoxItem Content="THANHTRA" />
+            <ComboBoxItem Content="QL_CSYT" />
+            <ComboBoxItem Content="NGHIENCUU" />
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="10,57,0,0"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"><Run Language="vi-vn"
+                                                Text="Username" /><LineBreak /><Run Language="vi-vn" /></TextBlock>
+        <TextBox x:Name="txbUser"
+                 HorizontalAlignment="Left"
+
+                 Margin="10,76,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"
+                 IsEnabled="False" />
+        <TextBox x:Name="txbPass"
+                 HorizontalAlignment="Left"
+                 Margin="10,122,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"
+                 IsEnabled="False" />
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="10,106,0,0"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Width="76"><Run Text="Password" /><LineBreak /><Run /></TextBlock>
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="10,174,0,0"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Width="76"><Run Text="Role" /><LineBreak /><Run /></TextBlock>
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="394,57,0,0"
+                   TextWrapping="Wrap"
+                   Text="Nhập tên role"
+                   VerticalAlignment="Top" />
+        <TextBox x:Name="txbrole"
+                 HorizontalAlignment="Left"
+                 Margin="363,76,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="145"
+                 Height="25"
+                 Grid.ColumnSpan="2"
+                 IsEnabled="False" />
+
     </Grid>
 </Window>

@@ -4,9 +4,103 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLTT_CSYT"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FFE5E5E5"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="Admin_GrantPrivxaml" Height="450" Width="800">
+        Title="Admin_GrantPrivxaml"
+        Height="690"
+        Width="1180">
     <Grid>
-        <TextBlock Text="Grant User/Role Privs" />
+        <RadioButton HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     GroupName="select"
+                     Margin="146,275,0,0"
+                     Checked="rdCheck"
+                     Content="Grant/Revoke Privileges To User/Role">
+
+        </RadioButton>
+        <RadioButton HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="688,275,0,0"
+                     Checked="rdCheck"
+                     GroupName="select"
+                     Content="Grant/Revoke Role To User">
+
+        </RadioButton>
+        <ComboBox x:Name="cbPriv"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Privilege"
+                  Background="White"
+                  Width="256"
+                  IsEnabled="False"
+                  Margin="129,337,795,0"
+                  VerticalAlignment="Top">
+            <ComboBoxItem Content="Xem"></ComboBoxItem>
+            <ComboBoxItem Content="Xoá"></ComboBoxItem>
+            <ComboBoxItem Content="Sửa"></ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="cbTable"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Table"
+                  Background="White"
+                  Width="256"
+                  IsEnabled="False"
+                  Margin="129,408,795,0"
+                  VerticalAlignment="Top">
+            <ComboBoxItem Content="NHANVIEN"></ComboBoxItem>
+            <ComboBoxItem Content="BENHNHAN"></ComboBoxItem>
+            <ComboBoxItem Content="CSYT"></ComboBoxItem>
+            <ComboBoxItem Content="HSBA"></ComboBoxItem>
+            <ComboBoxItem Content="HSBA_DV"></ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="cbRole"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Role"
+                  Background="White"
+                  Width="256"
+                  Margin="686,337,238,0"
+                  IsEnabled="False"
+                  VerticalAlignment="Top">
+            <ComboBoxItem Content="QL_CSYT"></ComboBoxItem>
+            <ComboBoxItem Content="BENHNHAN"></ComboBoxItem>
+            <ComboBoxItem Content="THANHTRA"></ComboBoxItem>
+            <ComboBoxItem Content="BACSI"></ComboBoxItem>
+            <ComboBoxItem Content="NGHIENCUU"></ComboBoxItem>
+            <ComboBoxItem Content="NEWROLE"></ComboBoxItem>
+        </ComboBox>
+
+        <TextBox x:Name="tbGrantee"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 VerticalAlignment="Top"
+                 Background="White"
+                 Width="256"
+                 materialDesign:HintAssist.Hint="Grantee"
+                 Margin="129,154,795,0" />
+
+        <Button x:Name="btnGrantPriv"
+                Width="110"
+                Height="50"
+                Margin="444,533,626,91"
+                Click="btn_GrantPriv_Click">
+            Grant
+        </Button>
+
+        <Button x:Name="btnRevoke"
+                Width="110"
+                Height="50"
+                Background="Red"
+                Margin="590,533,480,91"
+                Click="btnRevoke_Click">
+            Revoke
+        </Button>
+
     </Grid>
 </Window>

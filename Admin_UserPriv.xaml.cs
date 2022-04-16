@@ -58,13 +58,13 @@ namespace QLTT_CSYT
                 return;
             }
             if (txtUser.Text != "")
-                sql = sql + " AND u.GRANTEE LIKE N'%" + txtUser.Text + "%'";
+                sql = sql + " AND u.GRANTEE LIKE N'%" + txtUser.Text.ToUpper() + "%'";
             tblUser = Class.Functions.GetDataToTable(sql);
             dgvUserPriv.ItemsSource = tblUser.DefaultView;
-            if (tblUser.Rows.Count == 0)
-            {
-                MessageBox.Show("Không có bản ghi thỏa mãn điều kiện!!", "Thông báo", MessageBoxButton.OK);
-            }
+            //if (tblUser.Rows.Count == 0)
+            //{
+            //    MessageBox.Show("Không có bản ghi thỏa mãn điều kiện!!", "Thông báo", MessageBoxButton.OK);
+            //}
         }
 
         private void btn_Role_Click(object sender, RoutedEventArgs e)

@@ -32,6 +32,7 @@
                   materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14"                
                   SelectionChanged="dgvUser_RowContentClick" />
 
+
         <Grid Background="White"
               Width="180"
               Height="660"

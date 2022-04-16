@@ -67,6 +67,7 @@ namespace QLTT_CSYT
             admin_AddUser.Show();
         }
 
+
         private void dgvUser_RowContentClick(object sender, SelectionChangedEventArgs e)
         {
             if (dgvUser.SelectedIndex < 0)

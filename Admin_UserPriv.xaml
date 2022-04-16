@@ -15,8 +15,58 @@
         mc:Ignorable="d"
         Title="Admin_UserPriv"
         Height="693"
-        Width="1180">
+        Width="1180"
+        Initialized="Admin_UserPriv_Loading">
     <Grid>
-        <TextBlock Text="User/Role Privs" />
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <TextBlock Text="Nhập thông tin user" 
+                    Width="213"
+                                   VerticalAlignment="Top"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   HorizontalAlignment="Left" Margin="60,46,0,0"
+                   />
+        <TextBox Name="txtUser" Margin="278,36,666,604" Height="37" Background="White" />
+        <Button Name="btn_User" Style="{DynamicResource MaterialDesignToolButton}" Margin="514,41,626,604" Background="{DynamicResource MaterialDesignCardBackground}" Click="btn_User_Click">
+            <materialDesign:PackIcon Kind="Search"
+                                                             Opacity=".56"
+                                                             Height="42"
+                                                             Width="32" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <materialDesign:PackIcon.Background>
+                    <ImageBrush/>
+                </materialDesign:PackIcon.Background>
+            </materialDesign:PackIcon>
+        </Button>
+        <TextBox  Name="txtRoleName" Margin="779,36,130,604" Height="37" Background="White" RenderTransformOrigin="0.503,0.806"  />
+        <TextBlock Text="Nhập tên role" Margin="626,46,0,0"
+                   Width="153"
+                                   VerticalAlignment="Top"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   HorizontalAlignment="Left" />
+
+        <Button  Name="btn_Role" Style="{DynamicResource MaterialDesignToolButton}" Margin="1050,39,84,606" Click="btn_Role_Click">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource Primary300Foreground}"/>
+            </Button.Background>
+            <materialDesign:PackIcon Kind="Search"
+                                                             Opacity=".56"
+                                                             Height="42"
+                                                             Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Button>
+        <DataGrid x:Name="dgvUserPriv"
+                  ItemsSource="{Binding}"
+                  CanUserAddRows="False"
+                  SelectionUnit="FullRow"
+                  SelectionMode="Extended"
+                  Margin="20,109,20,33"
+                  FontSize="14"
+                  IsReadOnly="True"
+                  materialDesign:DataGridAssist.CellPadding="24 14 14 14"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" SelectionChanged="dgvUserPriv_SelectionChanged" />
+
     </Grid>
 </Window>

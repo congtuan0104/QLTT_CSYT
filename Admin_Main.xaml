@@ -20,11 +20,12 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         WindowStyle="None">
-    <Window.Clip>
-        <RectangleGeometry Rect="0,0,1180,750"
+  <Window.Clip>
+    <RectangleGeometry Rect="0,0,1180,750"
                            RadiusX="10"
                            RadiusY="10" />
-    </Window.Clip>
+  </Window.Clip>
+
 
     <Grid>
         <materialDesign:DrawerHost x:Name="drawer"
@@ -33,10 +34,12 @@
                 <DockPanel MinWidth="250">
                     <StackPanel Margin="16">
                         <TextBlock Margin="8,0,0,10"
+
                                    Text="MENU"
                                    FontSize="26" />
-                        <ListBox x:Name="listbMenu"
+            <ListBox x:Name="listbMenu"
                                  SelectionChanged="menu">
+
 
                             <ListBoxItem Height="44" >
                                 <TextBlock Text="HOME"
@@ -45,37 +48,39 @@
                             </ListBoxItem>
                             <ListBoxItem Height="44">
                                 <TextBlock Text="ALL USERS"
+
                                            FontSize="16" />
-                            </ListBoxItem>
-                            <ListBoxItem Height="44">
-                                <TextBlock Text="USER/ROLE PRIVILEGES"
+              </ListBoxItem>
+              <ListBoxItem Height="44">
+                <TextBlock Text="USER/ROLE PRIVILEGES"
                                            FontSize="16" />
-                            </ListBoxItem>
-                            <ListBoxItem Height="44">
-                                <TextBlock Text="GRANT/REVOKE PRIVILEGES"
+              </ListBoxItem>
+              <ListBoxItem Height="44">
+                <TextBlock Text="GRANT/REVOKE PRIVILEGES"
                                            FontSize="16" />
-                            </ListBoxItem>
-                            <ListBoxItem Height="44">
-                                <TextBlock Text="LOG OUT"
+              </ListBoxItem>
+              <ListBoxItem Height="44">
+                <TextBlock Text="LOG OUT"
                                            FontSize="16" />
-                            </ListBoxItem>
-                        </ListBox>
-                    </StackPanel>
+              </ListBoxItem>
+            </ListBox>
+          </StackPanel>
 
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Padding="16,12,12,8"
+
                                           DockPanel.Dock="Top">
-                    <materialDesign:ColorZone.Background>
-                        <SolidColorBrush Color="#FF627DD2" />
-                    </materialDesign:ColorZone.Background>
-                    <DockPanel>
-                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+          <materialDesign:ColorZone.Background>
+            <SolidColorBrush Color="#FF627DD2" />
+          </materialDesign:ColorZone.Background>
+          <DockPanel>
+            <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
                                       IsChecked="False"
                                       x:Name="MenuToggleButton"
                                       Foreground="White" />
-                        <TextBlock x:Name="txtTitle"
+            <TextBlock x:Name="txtTitle"
                                    Text="Dashboard"
                                    Margin="10,0,0,0"
                                    Width="300"
@@ -83,26 +88,26 @@
                                    Foreground="White"
                                    FontSize="24"
                                    HorizontalAlignment="Left">
-                        </TextBlock>
-                        <materialDesign:ColorZone Mode="Standard"
+            </TextBlock>
+            <materialDesign:ColorZone Mode="Standard"
                                                   Padding="8 4 8 4"
-                                                  Width="400"
+                                                  Width="369"
                                                   CornerRadius="5"
                                                   Panel.ZIndex="1"
                                                   materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Button Style="{DynamicResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="Search"
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{DynamicResource MaterialDesignToolButton}">
+                  <materialDesign:PackIcon Kind="Search"
                                                              Opacity=".56"
                                                              Height="22"
                                                              Width="22" />
-                                </Button>
-                                <TextBox Grid.Column="1"
+                </Button>
+                <TextBox Grid.Column="1"
                                          Margin="8 0 0 0"
                                          materialDesign:HintAssist.Hint="Nhập thông tin cần tìm"
                                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -111,10 +116,10 @@
                                          FontSize="14"
                                          VerticalAlignment="Center" />
 
-                            </Grid>
-                        </materialDesign:ColorZone>
+              </Grid>
+            </materialDesign:ColorZone>
 
-                        <Button x:Name="btnClose"
+            <Button x:Name="btnClose"
                                 Style="{StaticResource MaterialDesignIconButton}"
                                 ToolTip="MaterialDesignIconButton"
                                 DockPanel.Dock="Right"
@@ -124,10 +129,11 @@
                                 VerticalAlignment="Center"
                                 Width="30"
                                 Height="30">
-                            <materialDesign:PackIcon Kind="CloseThick"
+              <materialDesign:PackIcon Kind="CloseThick"
                                                      Height="20"
                                                      Width="20"
                                                      Foreground="White" />
+
                         </Button>
                         <TextBlock Text="Admin"
                                    Margin="3,0,40,0"
@@ -135,7 +141,7 @@
                                    DockPanel.Dock="Right"
                                    Foreground="White"
                                    VerticalAlignment="Center" />
-                        <materialDesign:PackIcon Kind="AccountCircleOutline"
+            <materialDesign:PackIcon Kind="AccountCircleOutline"
                                                  Height="30"
                                                  Width="30"
                                                  Foreground="White"
@@ -143,25 +149,29 @@
                                                  VerticalAlignment="Center"
                                                  HorizontalAlignment="Right" />
 
+
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
                     
 
-                    <Frame x:Name="frBody"
+
+          <Frame x:Name="frBody"
                            NavigationUIVisibility="Hidden"
+
                            >
 
-                    </Frame>
+
+          </Frame>
 
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
                                              x:Name="MainSnackbar" 
                                              HorizontalAlignment="Left"
                                              Margin="163,0,0,0" />
 
-                </Grid>
-            </DockPanel>
-        </materialDesign:DrawerHost>
+        </Grid>
+      </DockPanel>
+    </materialDesign:DrawerHost>
 
-    </Grid>
+  </Grid>
 </Window>

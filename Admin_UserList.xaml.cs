@@ -21,6 +21,9 @@ namespace QLTT_CSYT
     public partial class Admin_UserList : Window
     {
         DataTable tblUser;
+
+        string Username;
+        string Status;
         public Admin_UserList()
         {
             InitializeComponent();
@@ -29,12 +32,17 @@ namespace QLTT_CSYT
         private void Admin_User_Loading(object sender, EventArgs e)
         {
             LoadDataGridView();
+            //dgvUser.Columns[0].Header = "Username";
+            //dgvUser.Columns[1].Header = "Status";
+            //dgvUser.Columns[2].Header = "Created date";
+            //dgvUser.Columns[3].Header = "Expiry Date";
+            //dgvUser.Columns[4].Header = "Last Login";
         }
 
         private void LoadDataGridView()
         {
             string sql;
-            sql = "SELECT USER_ID, USERNAME, ACCOUNT_STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
+            sql = "SELECT USERNAME, ACCOUNT_STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
                 "FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'USERS'";
 
             tblUser = Class.Functions.GetDataToTable(sql); //Đọc dữ liệu từ bảng
@@ -45,7 +53,11 @@ namespace QLTT_CSYT
             //dgvUser.Columns[3].Header = "Expiry Date";
             //dgvUser.Columns[4].Header = "Last Login";
             dgvUser.AutoGenerateColumns = true;
-            
+            btnDeleteUser.IsEnabled = false;
+            btnDetail.IsEnabled = false;
+            btnChangePass.IsEnabled = false;
+            btnLock.IsEnabled = false;
+            btnUnlock.IsEnabled = false;
 
         }
 
@@ -55,9 +67,93 @@ namespace QLTT_CSYT
             admin_AddUser.Show();
         }
 
-        private void dgvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void dgvUser_RowContentClick(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgvUser.SelectedIndex < 0)
+                return;
+            btnDeleteUser.IsEnabled = true;
+            btnDetail.IsEnabled = true;
+            btnChangePass.IsEnabled = true;
+
+            DataRowView curRow = dgvUser.SelectedItem as DataRowView;
+
+            Username = curRow.Row.ItemArray[0].ToString();
+            Status = curRow.Row.ItemArray[1].ToString();
+
+            if(Status == "OPEN")
+            {
+                btnLock.IsEnabled = true;
+                btnUnlock.IsEnabled = false;
+            }
+            else
+            {
+                btnLock.IsEnabled = false;
+                btnUnlock.IsEnabled = true;
+            }
+        }
+
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            string sql;
+            if (MessageBox.Show("Xác nhận xoá tài khoản này!!!", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                sql = "alter session set \"_oracle_script\"=true";              
+                Class.Functions.RunSQL(sql);
+
+                if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z'))){
+                    sql = "DROP USER " + Username + " CASCADE";
+                }
+                else
+                {
+                    sql = "DROP USER '" + Username + "' CASCADE";
+                }
+
+                Class.Functions.RunSqlDel(sql);
+                LoadDataGridView();
+            }
+        }
+
+        private void btnLock_Click(object sender, RoutedEventArgs e)
+        {
+            string sql;
+            sql = "alter session set \"_oracle_script\"=true";
+            Class.Functions.RunSQL(sql);
+
+            if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
+            {
+                sql = "ALTER USER " + Username + " ACCOUNT LOCK";
+            }
+            else
+            {
+                sql = "ALTER USER '" + Username + "' ACCOUNT LOCK";
+            }
+            Class.Functions.RunSQL(sql);
+            LoadDataGridView();
+        }
+
+        private void btnUnlock_Click(object sender, RoutedEventArgs e)
+        {
+            string sql;
+            sql = "alter session set \"_oracle_script\"=true";
+            Class.Functions.RunSQL(sql);
+            if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
+            {
+                sql = "ALTER USER " + Username + " ACCOUNT UNLOCK";
+            }
+            else
+            {
+                sql = "ALTER USER '" + Username + "' ACCOUNT UNLOCK";
+            }
+
+            Class.Functions.RunSQL(sql);
+            LoadDataGridView();
+        }
+
+        private void btnChangePass_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_ChangePass admin_ChangePass = new Admin_ChangePass(Username);
+            admin_ChangePass.ShowDialog();
         }
     }
 }

@@ -1,0 +1,114 @@
+﻿<Window x:Class="QLTT_CSYT.Admin_ChangePass"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTT_CSYT"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="Change User Pass"
+        Height="400"
+        Width="360"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1"
+                             StartPoint="0.5,0">
+            <GradientStop Color="#FFECF8FF" />
+            <GradientStop Color="#FF41A4DC"
+                          Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,360,400"
+                           RadiusX="10"
+                           RadiusY="10" />
+    </Window.Clip>
+    <Grid>
+
+        <StackPanel Margin="0,10,0,0"
+                    Width="250"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Margin="0,0,0,20"
+                       Text="CHANGE PASSWORD "
+                       FontSize="24"
+                       TextAlignment="Center"
+                       Foreground="#FF0202B7"
+                       FontWeight="Bold">
+
+            </TextBlock>
+
+            <TextBox x:Name="tbUsername"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     VerticalAlignment="Top"
+                     materialDesign:HintAssist.Hint="Username"
+                     IsEnabled="False"
+                     Background="White" />
+            <PasswordBox x:Name="tbPass"
+                         Margin="0,15,0,0"
+                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                         VerticalAlignment="Top"
+                         materialDesign:HintAssist.Hint="New Password"
+                         Background="White" />
+            <PasswordBox x:Name="tbCPass"
+                         Margin="0,15,0,10"
+                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                         VerticalAlignment="Top"
+                         materialDesign:HintAssist.Hint="Confirm new Password"
+                         Background="White" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnSave"
+                        Grid.Column="0"
+                        Margin="0,15,5,0"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="35"
+                        materialDesign:ButtonAssist.CornerRadius="15"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Click="btnSave_Click">
+                    <TextBlock Text="Save" />
+                </Button>
+
+                <Button x:Name="btnClose"
+                        Grid.Column="1"
+                        Margin="5,15,0,0"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="35"
+                        Background="#FFDC4D4D"
+                        materialDesign:ButtonAssist.CornerRadius="15"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Click="btnClose_Click">
+                    <TextBlock Text="Cancel" />
+                </Button>
+
+            </Grid>
+
+            <TextBlock x:Name="txtWarning"
+                       Margin="0,20,0,0"
+                       Text="-----"
+                       Foreground="Green"
+                       TextWrapping="Wrap"
+                       FontSize="16"
+                       TextAlignment="Center">
+            </TextBlock>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

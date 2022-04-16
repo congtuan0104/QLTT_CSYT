@@ -28,7 +28,7 @@
                   FontSize="14"
                   IsReadOnly="True"
                   materialDesign:DataGridAssist.CellPadding="24 14 14 14"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" />
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" SelectionChanged="dgvUser_SelectionChanged" />
 
         <StackPanel Orientation="Horizontal"
                     Margin="0,10,0,0"

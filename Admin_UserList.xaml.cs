@@ -54,5 +54,10 @@ namespace QLTT_CSYT
             Admin_AddUser admin_AddUser = new Admin_AddUser();
             admin_AddUser.Show();
         }
+
+        private void dgvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

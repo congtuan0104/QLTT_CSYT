@@ -1,0 +1,171 @@
+﻿<Window x:Class="QLTT_CSYT.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTT_CSYT"
+        mc:Ignorable="d"
+        Title="Menu"
+        Height="579"
+        Width="833"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center"
+                   Margin="0,1,0,0"
+                   TextWrapping="Wrap"
+                   FontSize="50"
+                   Foreground="#FFC92020"
+                   Text="MENU"
+                   VerticalAlignment="Top"
+                   FontWeight="Bold" />
+        <Button x:Name="btnBenhNhan"
+                HorizontalAlignment="Left"
+                Height="150"
+                Margin="92,111,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnBenhNhan_Click">
+            <Image Source="../Images/Patient_logo.png"></Image>
+        </Button>
+        <Button x:Name="btnHSBA"
+                HorizontalAlignment="Center"
+                Height="150"
+                Margin="0,111,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnHSBA_Click">
+            <Image Source="../Images/medical-records.png"></Image>
+        </Button>
+        <Button x:Name="btnNhanVien"
+                HorizontalAlignment="Right"
+                Height="150"
+                Margin="0,111,92,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnNhanVien_Click">
+            <Image Source="../Images/profile.png"></Image>
+        </Button>
+        <Button x:Name="btnDichVu"
+                HorizontalAlignment="Left"
+                Height="150"
+                Margin="92,330,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnDichVu_Click">
+            <Image Source="../Images/pngegg.png"></Image>
+        </Button>
+
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="92,273,0,0"
+                   TextWrapping="Wrap"
+                   Text="Bệnh nhân"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="92,493,0,0"
+                   TextWrapping="Wrap"
+                   Text="Dịch vụ"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+
+        <TextBlock HorizontalAlignment="Center"
+                   Margin="0,273,0,0"
+                   TextWrapping="Wrap"
+                   Text="Hồ sơ bệnh án"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+        <TextBlock HorizontalAlignment="Right"
+                   Margin="0,273,92,0"
+                   TextWrapping="Wrap"
+                   Text="Nhân viên"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+        <TextBlock HorizontalAlignment="Center"
+                   Margin="0,71,0,0"
+                   FontSize="18"
+                   TextWrapping="Wrap"
+                   Text="|"
+                   VerticalAlignment="Top"
+                   Width="41"
+                   TextAlignment="Center" />
+        <TextBlock x:Name="txtUser"
+                   HorizontalAlignment="Left"
+                   Margin="291,73,0,0"
+                   Foreground="Blue"
+                   FontSize="16"
+                   TextWrapping="Wrap"
+                   Text="Username"
+                   VerticalAlignment="Top"
+                   TextAlignment="Right"
+                   Width="103" />
+        <TextBlock x:Name="txtRole"
+                   HorizontalAlignment="Left"
+                   Margin="425,73,0,0"
+                   Foreground="Blue"
+                   FontSize="16"
+                   TextWrapping="Wrap"
+                   Text="Role"
+                   VerticalAlignment="Top"
+                   Width="109"
+                   TextAlignment="Left"
+                   RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform AngleX="1.968" />
+                    <RotateTransform />
+                    <TranslateTransform X="-0.366" />
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <Button x:Name="btnThongBao"
+                HorizontalAlignment="Center"
+                Height="150"
+                Margin="0,330,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnThongBao_Click">
+            <Image Source="/Images/notification.png" />
+        </Button>
+        <TextBlock HorizontalAlignment="Center"
+                   Margin="0,493,0,0"
+                   TextWrapping="Wrap"
+                   Text="Thông báo"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+        <Button x:Name="btnDangXuat"
+                HorizontalAlignment="Right"
+                Height="150"
+                Margin="0,331,92,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnDangXuat_Click">
+            <Image Source="/Images/logout.png" />
+        </Button>
+        <TextBlock HorizontalAlignment="Right"
+                   Margin="0,493,92,0"
+                   TextWrapping="Wrap"
+                   Text="Đăng xuất"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+    </Grid>
+</Window>

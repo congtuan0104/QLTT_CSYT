@@ -68,8 +68,8 @@ namespace QLTT_CSYT
             }
             else
             {
-                Class.Functions.Disconnect();
-                MainWindow mainWindow = new MainWindow();
+                Class.DB_Config.Disconnect();
+                Login mainWindow = new Login();
                 mainWindow.Show();
                 this.Close();
             }

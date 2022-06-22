@@ -1,0 +1,140 @@
+﻿<Window x:Class="QLTT_CSYT.DSNhanVien"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTT_CSYT"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.FontSize="14"
+        mc:Ignorable="d"
+        Title="Nhân viên"
+        Height="600"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="50,20,0,0"
+                   TextWrapping="Wrap"
+                   FontSize="26"
+                   Foreground="#FFC92020"
+                   Text="DANH SÁCH NHÂN VIÊN"
+                   VerticalAlignment="Top"
+                   FontWeight="Bold" />
+        <DataGrid x:Name="dgvDSNV"
+                  Width="800"
+                  IsReadOnly="True"
+                  Background="#FFE8EDE0"
+                  AutoGenerateColumns="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="dgvDSNV_Selected"
+                  Margin="50,84,50,81" />
+        <TextBox x:Name="tbThongTin"
+                 HorizontalAlignment="Left"
+                 Margin="405,20,0,0"
+                 Padding="10"
+                 Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                 TextWrapping="Wrap"
+                 materialDesign:HintAssist.Hint="Nhập thông tin nhân viên"
+                 VerticalAlignment="Top"
+                 Width="200" />
+        <ComboBox x:Name="cbTimKiemTheo"
+                  HorizontalAlignment="Left"
+                  Margin="632,20,0,0"
+                  Padding="10"
+                  materialDesign:HintAssist.Hint="Tìm kiếm theo"
+                  Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                  VerticalAlignment="Top"
+                  Width="151">
+            <ComboBoxItem>Mã nhân viên</ComboBoxItem>
+            <ComboBoxItem>CMND</ComboBoxItem>
+        </ComboBox>
+        <Button x:Name="btnTimKiem"
+                Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                ToolTip="MaterialDesignFloatingActionLightButton"
+                Margin="0,22,55,0"
+                Height="35"
+                Width="35"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Background="#FF522BBD"
+                Click="btnTimKiem_Click">
+            <materialDesign:PackIcon Kind="Magnify"
+                                     Foreground="White"
+                                     Height="25"
+                                     Width="25" />
+        </Button>
+        <Button x:Name="btnThem"
+                HorizontalAlignment="Left"
+                Margin="50,508,0,0"
+                VerticalAlignment="Top"
+                Height="40"
+                Width="120"
+                Click="btnThem_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Height="24"
+                                         Width="24"
+                                         Margin="0,0,4,0"
+                                         Kind="PlusThick" />
+                <TextBlock Text="Thêm"
+                           FontSize="16"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnSua"
+                IsEnabled="False"
+                HorizontalAlignment="Left"
+                Margin="272,508,0,0"
+                VerticalAlignment="Top"
+                Height="40"
+                Width="120"
+                Click="btnSua_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Height="24"
+                                         Width="24"
+                                         Margin="0,0,4,0"
+                                         Kind="Pencil" />
+                <TextBlock Text="Chi tiết"
+                           FontSize="16"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnXoa"
+                IsEnabled="False"
+                HorizontalAlignment="Left"
+                Margin="496,508,0,0"
+                VerticalAlignment="Top"
+                Height="40"
+                Width="120"
+                Click="btnXoa_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Height="24"
+                                         Width="24"
+                                         Margin="0,0,4,0"
+                                         Kind="Delete" />
+                <TextBlock Text="Xoá"
+                           FontSize="16"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnQuayLai"
+                HorizontalAlignment="Left"
+                Margin="728,508,0,0"
+                VerticalAlignment="Top"
+                Height="40"
+                Width="120"
+                Click="btnQuayLai_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Height="24"
+                                         Width="24"
+                                         Margin="0,0,4,0"
+                                         Kind="ArrowLeftCircle" />
+                <TextBlock Text="Quay lại"
+                           FontSize="16"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

@@ -33,7 +33,7 @@ namespace QLTT_CSYT
         {
             string sql;
             sql= "SELECT GRANTEE,PRIVILEGE,TABLE_NAME FROM USER_TAB_PRIVS";
-            tblUser = Class.Functions.GetDataToTable(sql); //Đọc dữ liệu từ bảng
+            tblUser = Class.DB_Config.GetDataToTable(sql); //Đọc dữ liệu từ bảng
             dgvUserPriv.ItemsSource = tblUser.DefaultView; //Nguồn dữ liệu            
             //dgvUserPriv.Columns[0].Header = "1";
             //dgvUserPriv.Columns[1].Header = "2";
@@ -59,7 +59,7 @@ namespace QLTT_CSYT
             }
             if (txtUser.Text != "")
                 sql = sql + " AND u.GRANTEE LIKE N'%" + txtUser.Text.ToUpper() + "%'";
-            tblUser = Class.Functions.GetDataToTable(sql);
+            tblUser = Class.DB_Config.GetDataToTable(sql);
             dgvUserPriv.ItemsSource = tblUser.DefaultView;
             //if (tblUser.Rows.Count == 0)
             //{
@@ -78,7 +78,7 @@ namespace QLTT_CSYT
             }   
             if (txtRoleName.Text != "")
                 sql = sql + " AND ROLE LIKE N'%" + txtRoleName.Text + "%'";
-            tblUser = Class.Functions.GetDataToTable(sql);
+            tblUser = Class.DB_Config.GetDataToTable(sql);
             dgvUserPriv.ItemsSource = tblUser.DefaultView;
             if (tblUser.Rows.Count == 0)
             {

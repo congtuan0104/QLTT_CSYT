@@ -51,7 +51,7 @@ namespace QLTT_CSYT
 
             string sql;
             sql = "alter session set \"_oracle_script\"=true";
-            Class.Functions.RunSQL(sql);
+            Class.DB_Config.RunSQL(sql);
 
 
             if (((user[0] >= 'a') && (user[0] <= 'z')) || ((user[0] >= 'A') && (user[0] <= 'Z')))
@@ -62,7 +62,7 @@ namespace QLTT_CSYT
             {
                 sql = "ALTER USER '" + user + " IDENTIFIED BY " + pass;
             }
-            Class.Functions.RunSQL(sql);
+            Class.DB_Config.RunSQL(sql);
             this.Close();
         }
 

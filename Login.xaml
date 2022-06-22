@@ -1,4 +1,4 @@
-﻿<Window x:Class="QLTT_CSYT.MainWindow"
+﻿<Window x:Class="QLTT_CSYT.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +13,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Đăng nhập"
         Height="320"
         Width="520"
         ResizeMode="NoResize"
@@ -36,7 +36,7 @@
                     VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,20"
                        Text="HỆ THỐNG QLTT CSYT "
-                       FontSize="24"
+                       FontSize="22"
                        TextAlignment="Center"
                        Foreground="Red"
                        FontWeight="Bold">
@@ -46,7 +46,7 @@
                 </TextBlock.Background>
             </TextBlock>
 
-            <TextBox x:Name="tbUsername"
+            <TextBox x:Name="tbUsername"                    
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
                      materialDesign:HintAssist.Hint="Tên đăng nhập (CMND)"

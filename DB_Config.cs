@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace QLTT_CSYT.Class
 {
-    class Functions
+    class DB_Config
     {
         public static OracleConnection Con;  //Khai báo đối tượng kết nối
                                    
@@ -33,12 +33,12 @@ namespace QLTT_CSYT.Class
                 if (Con == null)
                 {
                     Con = new OracleConnection(strConn);
+                    return true;
                 }
                 if (Con.State == ConnectionState.Closed)
                 {
                     Con.Open();
-                    //MessageBox.Show("Đăng nhập thành công");
-              
+                    //MessageBox.Show("Đăng nhập thành công");     
                     return true;
                 }
             }
@@ -63,10 +63,11 @@ namespace QLTT_CSYT.Class
         //Lấy dữ liệu vào bảng
         public static DataTable GetDataToTable(string sql)
         {
+            sql = "((" + sql + "))";
             OracleDataAdapter DataAdapter = new OracleDataAdapter(); //Định nghĩa đối tượng thuộc lớp SqlDataAdapter
-            //Tạo đối tượng thuộc lớp SqlCommand
+            //Tạo đối tượng thuộc lớp OracleCommand
             DataAdapter.SelectCommand = new OracleCommand();
-            DataAdapter.SelectCommand.Connection = Functions.Con; //Kết nối cơ sở dữ liệu
+            DataAdapter.SelectCommand.Connection = DB_Config.Con; //Kết nối cơ sở dữ liệu
             DataAdapter.SelectCommand.CommandText = sql; //Lệnh SQL
             //Khai báo đối tượng table thuộc lớp DataTable
             DataTable table = new DataTable();
@@ -76,6 +77,7 @@ namespace QLTT_CSYT.Class
 
         public static bool CheckValue(string sql)
         {
+            sql = "((" + sql + "))";
             OracleDataAdapter dap = new OracleDataAdapter(sql, Con);
             DataTable table = new DataTable();
             dap.Fill(table);
@@ -86,6 +88,7 @@ namespace QLTT_CSYT.Class
 
         public static void RunSQL(string sql)
         {
+            sql = "((" + sql + "))";
             OracleCommand cmd;
             cmd = new OracleCommand();
             cmd.Connection = Con;
@@ -105,7 +108,7 @@ namespace QLTT_CSYT.Class
         public static void RunSqlDel(string sql)
         {
             OracleCommand cmd = new OracleCommand();
-            cmd.Connection = Functions.Con;
+            cmd.Connection = DB_Config.Con;
             cmd.CommandText = sql;
             try
             {
@@ -118,6 +121,17 @@ namespace QLTT_CSYT.Class
             }
             cmd.Dispose();
             cmd = null;
+        }
+
+        public static OracleDataReader GetDataToReader(string sql)
+        {
+            sql = "((" + sql + "))";
+            OracleCommand command = new OracleCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = sql;
+            command.Connection = DB_Config.Con;
+            OracleDataReader reader = command.ExecuteReader();
+            return reader;
         }
     }
 

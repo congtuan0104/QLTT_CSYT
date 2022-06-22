@@ -37,7 +37,7 @@ namespace QLTT_CSYT
                 string sql;
 
                 sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
-                Class.Functions.RunSQL(sql);
+                Class.DB_Config.RunSQL(sql);
 
                 if (((username[0] >= 'a') && (username[0] <= 'z')) || ((username[0] >= 'A') && (username[0] <= 'Z')))
                 {
@@ -50,7 +50,7 @@ namespace QLTT_CSYT
 
 
 
-                Class.Functions.RunSQL(sql);
+                Class.DB_Config.RunSQL(sql);
 
                 if (role != "KHONG")
                 {
@@ -63,7 +63,7 @@ namespace QLTT_CSYT
                         sql = "GRANT " + role + " TO '" + username + "'";
                     }
                     MessageBox.Show(sql);
-                    Class.Functions.RunSQL(sql);
+                    Class.DB_Config.RunSQL(sql);
                 }
 
             }
@@ -74,10 +74,10 @@ namespace QLTT_CSYT
                 string rolename = txbrole.Text.ToString();
                 string sql;
                 sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
-                Class.Functions.RunSQL(sql);
+                Class.DB_Config.RunSQL(sql);
                 sql = "CREATE ROLE " + rolename;
                 
-                Class.Functions.RunSQL(sql);
+                Class.DB_Config.RunSQL(sql);
                 
             }
             MessageBox.Show("Thao tác thành công");

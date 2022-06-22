@@ -45,7 +45,7 @@ namespace QLTT_CSYT
             sql = "SELECT USERNAME, ACCOUNT_STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
                 "FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'USERS'";
 
-            tblUser = Class.Functions.GetDataToTable(sql); //Đọc dữ liệu từ bảng
+            tblUser = Class.DB_Config.GetDataToTable(sql); //Đọc dữ liệu từ bảng
             dgvUser.ItemsSource = tblUser.DefaultView; //Nguồn dữ liệu            
             //dgvUser.Columns[0].Header = "Username";
             //dgvUser.Columns[1].Header = "Status";
@@ -99,7 +99,7 @@ namespace QLTT_CSYT
             if (MessageBox.Show("Xác nhận xoá tài khoản này!!!", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 sql = "alter session set \"_oracle_script\"=true";              
-                Class.Functions.RunSQL(sql);
+                Class.DB_Config.RunSQL(sql);
 
                 if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z'))){
                     sql = "DROP USER " + Username + " CASCADE";
@@ -109,7 +109,7 @@ namespace QLTT_CSYT
                     sql = "DROP USER '" + Username + "' CASCADE";
                 }
 
-                Class.Functions.RunSqlDel(sql);
+                Class.DB_Config.RunSqlDel(sql);
                 LoadDataGridView();
             }
         }
@@ -118,7 +118,7 @@ namespace QLTT_CSYT
         {
             string sql;
             sql = "alter session set \"_oracle_script\"=true";
-            Class.Functions.RunSQL(sql);
+            Class.DB_Config.RunSQL(sql);
 
             if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
             {
@@ -128,7 +128,7 @@ namespace QLTT_CSYT
             {
                 sql = "ALTER USER '" + Username + "' ACCOUNT LOCK";
             }
-            Class.Functions.RunSQL(sql);
+            Class.DB_Config.RunSQL(sql);
             LoadDataGridView();
         }
 
@@ -136,7 +136,7 @@ namespace QLTT_CSYT
         {
             string sql;
             sql = "alter session set \"_oracle_script\"=true";
-            Class.Functions.RunSQL(sql);
+            Class.DB_Config.RunSQL(sql);
             if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
             {
                 sql = "ALTER USER " + Username + " ACCOUNT UNLOCK";
@@ -146,7 +146,7 @@ namespace QLTT_CSYT
                 sql = "ALTER USER '" + Username + "' ACCOUNT UNLOCK";
             }
 
-            Class.Functions.RunSQL(sql);
+            Class.DB_Config.RunSQL(sql);
             LoadDataGridView();
         }
 

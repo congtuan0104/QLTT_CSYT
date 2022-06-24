@@ -35,6 +35,11 @@ namespace QLTT_CSYT
 
             sql = "SELECT * FROM SESSION_ROLES";
             dt = Class.DB_Config.GetDataToTable(sql);
+            if(dt.Rows.Count > 1)
+            {
+                txtRole.Text = "Admin";
+                return;
+            }
             txtRole.Text = dt.Rows[0]["ROLE"].ToString();
         }
 
@@ -47,7 +52,9 @@ namespace QLTT_CSYT
 
         private void btnHSBA_Click(object sender, RoutedEventArgs e)
         {
-
+            HSBA hs = new HSBA();
+            hs.Show();
+            this.Close();
         }
 
         private void btnNhanVien_Click(object sender, RoutedEventArgs e)
@@ -67,7 +74,9 @@ namespace QLTT_CSYT
 
         private void btnThongBao_Click(object sender, RoutedEventArgs e)
         {
-
+            ThongBao tb = new ThongBao();
+            tb.Show();
+            this.Close();
         }
 
         private void btnDichVu_Click(object sender, RoutedEventArgs e)
@@ -75,6 +84,19 @@ namespace QLTT_CSYT
             DichVu dv = new DichVu();
             dv.Show();
             this.Close();
+        }
+
+        private void btnCSYT_Click(object sender, RoutedEventArgs e)
+        {
+            CSYT cs = new CSYT();
+            cs.Show();
+            this.Close();
+        }
+
+        private void btnDoiMK_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_ChangePass changePass = new Admin_ChangePass(txtUser.Text);
+            changePass.ShowDialog();
         }
     }
 }

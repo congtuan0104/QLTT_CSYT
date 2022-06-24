@@ -37,8 +37,7 @@ namespace QLTT_CSYT.Class
                 }
                 if (Con.State == ConnectionState.Closed)
                 {
-                    Con.Open();
-                    //MessageBox.Show("Đăng nhập thành công");     
+                    Con.Open();    
                     return true;
                 }
             }
@@ -56,7 +55,6 @@ namespace QLTT_CSYT.Class
                 Con.Close();   	//Đóng kết nối
                 Con.Dispose(); 	//Giải phóng tài nguyên
                 Con = null;
-                MessageBox.Show("Đã ngắt kết nối");
             }
         }
 
@@ -86,7 +84,7 @@ namespace QLTT_CSYT.Class
             else return false;
         }
 
-        public static void RunSQL(string sql)
+        public static bool RunSQL(string sql)
         {
             sql = "((" + sql + "))";
             OracleCommand cmd;
@@ -95,7 +93,9 @@ namespace QLTT_CSYT.Class
             cmd.CommandText = sql;
             try
             {
-                cmd.ExecuteNonQuery();
+                int kq = cmd.ExecuteNonQuery();
+                if (kq > 0)
+                    return true;
             }
             catch (Exception ex)
             {
@@ -103,6 +103,7 @@ namespace QLTT_CSYT.Class
             }
             cmd.Dispose();
             cmd = null;
+            return false;
         }
 
         public static void RunSqlDel(string sql)

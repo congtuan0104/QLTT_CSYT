@@ -51,7 +51,7 @@
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
                      materialDesign:HintAssist.Hint="Username"
-                     IsEnabled="False"
+                     IsReadOnly="True"
                      Background="White" />
             <PasswordBox x:Name="tbPass"
                          Margin="0,15,0,0"

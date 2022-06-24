@@ -54,31 +54,31 @@ namespace QLTT_CSYT
 
             else if (username == "cs")
             {   // QL_CSYT
-                username = "231353133";
+                username = "U231353133";
                 password = "1234";
             }
 
             else if (username == "bn")
             {   // Bệnh nhân
-                username = "946301145";
+                username = "U946301145";
                 password = "4321";
             }
 
             else if (username == "tt")
             {   // Thanh tra
-                username = "232630930";
+                username = "U232630930";
                 password = "1234";
             }
 
             else if (username == "nc")
             {   // Nghiên cứu
-                username = "757592857";
+                username = "U757592857";
                 password = "1234";
             }
 
             else if (username == "bs")
             {   // Nghiên cứu
-                username = "868387298";
+                username = "U868387298";
                 password = "1234";
             }
 
@@ -115,7 +115,7 @@ namespace QLTT_CSYT
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Environment.Exit(0);
         }
     }
 }

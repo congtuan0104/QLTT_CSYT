@@ -90,6 +90,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PhanHe2\ChiTietHSBA.xaml.cs">
+      <DependentUpon>ChiTietHSBA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHe2\CSYT.xaml.cs">
+      <DependentUpon>CSYT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHe2\HSBA.xaml.cs">
+      <DependentUpon>HSBA.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhanHe2\DichVu.xaml.cs">
       <DependentUpon>DichVu.xaml</DependentUpon>
     </Compile>
@@ -108,13 +117,33 @@
     <Compile Include="PhanHe2\BenhNhan.xaml.cs">
       <DependentUpon>BenhNhan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes.cs" />
     <Compile Include="PhanHe2\ThemBenhNhan.xaml.cs">
       <DependentUpon>ThemBenhNhan.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhanHe2\ThemNhanVien.xaml.cs">
       <DependentUpon>ThemNhanVien.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PhanHe2\ThemHSBA.xaml.cs">
+      <DependentUpon>ThemHSBA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHe2\ThongBao.xaml.cs">
+      <DependentUpon>ThongBao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHe2\ThemDV_HSBA.xaml.cs">
+      <DependentUpon>ThemDV_HSBA.xaml</DependentUpon>
+    </Compile>
+    <Page Include="PhanHe2\ChiTietHSBA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhanHe2\CSYT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhanHe2\HSBA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PhanHe2\DichVu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +238,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PhanHe2\ThemHSBA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhanHe2\ThongBao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhanHe2\ThemDV_HSBA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -256,10 +297,16 @@
     <Resource Include="Images\profile.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\notification.png" />
+    <Resource Include="Images\logout.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\medical-team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hospital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notification %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.4.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.4.0\build\MaterialDesignThemes.targets')" />

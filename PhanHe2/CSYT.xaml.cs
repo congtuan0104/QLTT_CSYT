@@ -17,25 +17,25 @@ using System.Windows.Shapes;
 namespace QLTT_CSYT
 {
     /// <summary>
-    /// Interaction logic for DichVu.xaml
+    /// Interaction logic for CSYT.xaml
     /// </summary>
-    public partial class DichVu : Window
+    public partial class CSYT : Window
     {
         DataTable tbl = new DataTable();
-        public DichVu()
+        public CSYT()
         {
             InitializeComponent();
-            LayDSDV();
+            LayDSCSYT();
         }
 
-        private void LayDSDV()
+        private void LayDSCSYT()
         {
             try
             {
-                string sql = "SELECT * FROM QLTT.DICHVU";
+                string sql = "SELECT * FROM QLTT.CSYT";
                 tbl = Class.DB_Config.GetDataToTable(sql);
-                dgvDSDV.ItemsSource = null;
-                dgvDSDV.ItemsSource = tbl.DefaultView;
+                dgvDSCS.ItemsSource = null;
+                dgvDSCS.ItemsSource = tbl.DefaultView;
             }
 
             catch (Exception ex)
@@ -44,22 +44,24 @@ namespace QLTT_CSYT
             }
         }
 
-        private void dgvDSDV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgvDSCS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgvDSDV.SelectedIndex < 0)
+            if (dgvDSCS.SelectedIndex < 0)
             {
-                tbMaDV.Clear();
-                tbTenDV.Clear();
-                tbGiaDV.Clear();
+                tbMaCS.Clear();
+                tbTenCS.Clear();
+                tbDiaChi.Clear();
+                tbSDT.Clear();
                 btnLuu.IsEnabled = false;
                 btnXoa.IsEnabled = false;
                 btnHuy.IsEnabled = false;
                 return;
             }
-            DataRowView DV_Selected = dgvDSDV.SelectedItem as DataRowView;           
-            tbMaDV.Text = DV_Selected.Row["MADV"].ToString();
-            tbTenDV.Text = DV_Selected.Row["TENDV"].ToString();
-            tbGiaDV.Text = DV_Selected.Row["GIADV"].ToString();
+            DataRowView CS_Selected = dgvDSCS.SelectedItem as DataRowView;
+            tbMaCS.Text = CS_Selected.Row["MACSYT"].ToString();
+            tbTenCS.Text = CS_Selected.Row["TENCSYT"].ToString();
+            tbDiaChi.Text = CS_Selected.Row["DCCSYT"].ToString();
+            tbSDT.Text = CS_Selected.Row["SDTCSYT"].ToString();
             btnLuu.IsEnabled = true;
             btnXoa.IsEnabled = true;
             return;
@@ -68,9 +70,10 @@ namespace QLTT_CSYT
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            tbMaDV.Clear();
-            tbTenDV.Clear();
-            tbGiaDV.Clear();
+            tbMaCS.Clear();
+            tbTenCS.Clear();
+            tbDiaChi.Clear();
+            tbSDT.Clear();
             btnThem.IsEnabled = false;
             btnLuu.IsEnabled = true;
             btnHuy.IsEnabled = true;
@@ -79,16 +82,16 @@ namespace QLTT_CSYT
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView DV_Selected = dgvDSDV.SelectedItem as DataRowView;
+            DataRowView CS_Selected = dgvDSCS.SelectedItem as DataRowView;
 
-            string message = "Bạn có chắc muốn xoá dịch vụ "+ tbTenDV.Text+ " ?";
-            // Thực hiện xoá dịch vụ
+            string message = "Bạn có chắc muốn xoá cơ sở " + tbTenCS.Text + " ?";
+
             if (MessageBox.Show(message, "Cảnh báo", MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                string sql = "DELETE QLTT.DichVu WHERE MaDV = " + tbMaDV.Text;
+                string sql = "DELETE QLTT.CSYT WHERE MaCSYT = " + tbMaCS.Text;
                 Class.DB_Config.RunSqlDel(sql);
-                LayDSDV();
+                LayDSCSYT();
             }
             return;
         }
@@ -102,50 +105,52 @@ namespace QLTT_CSYT
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            if (tbMaDV.Text == null|| tbMaDV.Text.Length == 0)
+            if (tbMaCS.Text == null || tbMaCS.Text.Length == 0)
             {
                 // insert dichvu
-                string sql = "INSERT INTO QLTT.DICHVU(TENDV, GIADV) " +
-                "VALUES(:tendv, :gia)";
+                string sql = "INSERT INTO QLTT.CSYT(TENCSYT, DCCSYT, SDTCSYT) " +
+                "VALUES(:tencs, :diachi, :sdt)";
                 try
                 {
                     OracleCommand command = new OracleCommand();
                     command.CommandType = CommandType.Text;
                     command.CommandText = sql;
                     command.Connection = Class.DB_Config.Con;
-                    command.Parameters.Add(":tendv", OracleDbType.NVarchar2).Value = tbTenDV.Text;
-                    command.Parameters.Add(":gia", OracleDbType.Int32).Value = Int32.Parse(tbGiaDV.Text);
-                    
+                    command.Parameters.Add(":tencs", OracleDbType.NVarchar2).Value = tbTenCS.Text;
+                    command.Parameters.Add(":diachi", OracleDbType.NVarchar2).Value = tbDiaChi.Text;
+                    command.Parameters.Add(":sdt", OracleDbType.Char).Value = tbSDT.Text;
                     command.ExecuteNonQuery();
 
-                    MessageBox.Show("Thêm dịch vụ thành công");
-                    LayDSDV();
+                    MessageBox.Show("Thêm CSYT thành công");
+                    LayDSCSYT();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Thêm dịch vụ thất bại!\n" + ex.Message);
+                    MessageBox.Show("Thêm CSYT thất bại!\n" + ex.Message);
                 }
             }
             else
             {
                 // update dichvu
-                string sql = "UPDATE QLTT.DICHVU SET " +
-                "TENDV = :tendv, " +
-                "GIADV = :gia " +
-                "WHERE MADV = :madv";
+                string sql = "UPDATE QLTT.CSYT SET " +
+                "TENCSYT = :tendv, " +
+                "DCCSYT = :diachi, " +
+                "SDTCSYT = :sdt " +
+                "WHERE MACSYT = :macs";
                 try
                 {
                     OracleCommand command = new OracleCommand();
                     command.CommandType = CommandType.Text;
                     command.CommandText = sql;
                     command.Connection = Class.DB_Config.Con;
-                    command.Parameters.Add(":tendv", OracleDbType.NVarchar2).Value = tbTenDV.Text;                  
-                    command.Parameters.Add(":gia", OracleDbType.Int32).Value = Int32.Parse(tbGiaDV.Text);                    
-                    command.Parameters.Add(":mabn", OracleDbType.Int32).Value = Int32.Parse(tbMaDV.Text);
+                    command.Parameters.Add(":tencs", OracleDbType.NVarchar2).Value = tbTenCS.Text;
+                    command.Parameters.Add(":diachi", OracleDbType.NVarchar2).Value = tbDiaChi.Text;
+                    command.Parameters.Add(":sdt", OracleDbType.Char).Value = tbSDT.Text;
+                    command.Parameters.Add(":macs", OracleDbType.Int32).Value = Int32.Parse(tbMaCS.Text);
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Cập nhật thành công");
-                    LayDSDV();
+                    LayDSCSYT();
                 }
                 catch (Exception ex)
                 {
@@ -155,26 +160,27 @@ namespace QLTT_CSYT
         }
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
-        {           
+        {
             btnThem.IsEnabled = true;
-            if (dgvDSDV.SelectedIndex < 0)
+            if (dgvDSCS.SelectedIndex < 0)
             {
-                tbMaDV.Clear();
-                tbTenDV.Clear();
-                tbGiaDV.Clear();
+                tbMaCS.Clear();
+                tbTenCS.Clear();
+                tbDiaChi.Clear();
+                tbSDT.Clear();
                 btnLuu.IsEnabled = false;
                 btnXoa.IsEnabled = false;
                 btnHuy.IsEnabled = false;
                 return;
             }
-            DataRowView DV_Selected = dgvDSDV.SelectedItem as DataRowView;
-            tbMaDV.Text = DV_Selected.Row["MADV"].ToString();
-            tbTenDV.Text = DV_Selected.Row["TENDV"].ToString();
-            tbGiaDV.Text = DV_Selected.Row["GIADV"].ToString();
+            DataRowView CS_Selected = dgvDSCS.SelectedItem as DataRowView;
+            tbMaCS.Text = CS_Selected.Row["MACSYT"].ToString();
+            tbTenCS.Text = CS_Selected.Row["TENCSYT"].ToString();
+            tbDiaChi.Text = CS_Selected.Row["DCCSYT"].ToString();
+            tbSDT.Text = CS_Selected.Row["SDTCSYT"].ToString();
             btnLuu.IsEnabled = true;
             btnXoa.IsEnabled = true;
 
         }
-
     }
 }

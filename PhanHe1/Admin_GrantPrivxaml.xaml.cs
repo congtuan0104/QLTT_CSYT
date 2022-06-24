@@ -41,7 +41,7 @@ namespace QLTT_CSYT
                     priv = "UPDATE";
 
                 sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {
@@ -52,7 +52,7 @@ namespace QLTT_CSYT
                     sql = "GRANT " + priv + " ON " + tab + " TO '" + grantee + "'";
                 }
 
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
                 
             }
             else
@@ -63,7 +63,7 @@ namespace QLTT_CSYT
                
 
                 sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {
@@ -74,7 +74,7 @@ namespace QLTT_CSYT
                     sql = "GRANT " + role + " TO '" + grantee + "'";
                 }
 
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
             }
             MessageBox.Show("Thao tác gán quyền thành công");
         }
@@ -96,7 +96,7 @@ namespace QLTT_CSYT
                     priv = "UPDATE";
 
                 sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {
@@ -108,7 +108,7 @@ namespace QLTT_CSYT
                 }
    
 
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
             }
             else
             {
@@ -128,7 +128,7 @@ namespace QLTT_CSYT
                     sql = "REVOKE " + role + " FROM '" + grantee + "'";
                 }
     
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
             }
             MessageBox.Show("Thao tác thu hồi quyền thành công");
         }

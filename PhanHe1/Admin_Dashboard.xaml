@@ -24,8 +24,7 @@
             <Button x:Name="btnAllUser"
                     Width="250"
                     Height="250"
-                    Margin="0,0,30,0"
-                    Click="btnAllUser_Click">
+                    Margin="0,0,30,0">
                 <Button.Background>
                     <ImageBrush ImageSource="/login_screen.png" />
                 </Button.Background>
@@ -54,5 +53,16 @@
                 </Button.Background>
             </Button>
         </StackPanel>
+        <Button x:Name="btnPH2"
+                Click="btnPH2_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="250"
+                Height="250"
+                Margin="45,339,0,0">
+            <Button.Background>
+                <ImageBrush ImageSource="/login_screen.png" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

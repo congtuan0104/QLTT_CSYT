@@ -99,14 +99,14 @@ namespace QLTT_CSYT
             if (MessageBox.Show("Xác nhận xoá tài khoản này!!!", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 sql = "alter session set \"_oracle_script\"=true";              
-                Class.DB_Config.RunSQL(sql);
+                Class.DB_Config.RunSqlDel(sql);
 
                 if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z'))){
                     sql = "DROP USER " + Username + " CASCADE";
                 }
                 else
                 {
-                    sql = "DROP USER '" + Username + "' CASCADE";
+                    sql = "DROP USER \"" + Username + "\" CASCADE";
                 }
 
                 Class.DB_Config.RunSqlDel(sql);
@@ -118,7 +118,7 @@ namespace QLTT_CSYT
         {
             string sql;
             sql = "alter session set \"_oracle_script\"=true";
-            Class.DB_Config.RunSQL(sql);
+            Class.DB_Config.RunSqlDel(sql);
 
             if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
             {
@@ -126,9 +126,9 @@ namespace QLTT_CSYT
             }
             else
             {
-                sql = "ALTER USER '" + Username + "' ACCOUNT LOCK";
+                sql = "ALTER USER \"" + Username + "\" ACCOUNT LOCK";
             }
-            Class.DB_Config.RunSQL(sql);
+            Class.DB_Config.RunSqlDel(sql);
             LoadDataGridView();
         }
 
@@ -136,17 +136,17 @@ namespace QLTT_CSYT
         {
             string sql;
             sql = "alter session set \"_oracle_script\"=true";
-            Class.DB_Config.RunSQL(sql);
+            Class.DB_Config.RunSqlDel(sql);
             if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
             {
                 sql = "ALTER USER " + Username + " ACCOUNT UNLOCK";
             }
             else
             {
-                sql = "ALTER USER '" + Username + "' ACCOUNT UNLOCK";
+                sql = "ALTER USER \"" + Username + "\" ACCOUNT UNLOCK";
             }
 
-            Class.DB_Config.RunSQL(sql);
+            Class.DB_Config.RunSqlDel(sql);
             LoadDataGridView();
         }
 

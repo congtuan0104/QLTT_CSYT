@@ -1,5 +1,6 @@
 ﻿<Window x:Class="QLTT_CSYT.Menu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,9 +12,39 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Grid>
+        <materialDesign:PopupBox x:Name="pbUser"
+                                 StaysOpen="True"
+                                 PlacementMode="BottomAndAlignRightEdges"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Right"
+                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                 Margin="0,14,26,0"
+                                 Height="50"
+                                 Width="50">
+            <materialDesign:PopupBox.ToggleContent>
+                <Image Source="../Images/profile.png"></Image>
+            </materialDesign:PopupBox.ToggleContent>
+            <StackPanel Width="150"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Right">
+                <Button x:Name="btnDoiMK"
+                        Content="Đổi mật khẩu"
+                        FontSize="14"
+                        Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}"
+                        Click="btnDoiMK_Click" />
+                <Button x:Name="btnDangXuat"
+                        Content="Đăng xuất"
+                        FontSize="14"
+                        Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}"
+                        Click="btnDangXuat_Click">
+                </Button>
+            </StackPanel>
+        </materialDesign:PopupBox>
+
         <TextBlock HorizontalAlignment="Center"
-                   Margin="0,1,0,0"
+                   Margin="0,8,0,0"
                    TextWrapping="Wrap"
+                   FontFamily="Times New Roman"
                    FontSize="50"
                    Foreground="#FFC92020"
                    Text="MENU"
@@ -22,6 +53,7 @@
         <Button x:Name="btnBenhNhan"
                 HorizontalAlignment="Left"
                 Height="150"
+                Padding="10"
                 Margin="92,111,0,0"
                 VerticalAlignment="Top"
                 Width="150"
@@ -32,6 +64,7 @@
         <Button x:Name="btnHSBA"
                 HorizontalAlignment="Center"
                 Height="150"
+                Padding="10"
                 Margin="0,111,0,0"
                 VerticalAlignment="Top"
                 Width="150"
@@ -42,16 +75,18 @@
         <Button x:Name="btnNhanVien"
                 HorizontalAlignment="Right"
                 Height="150"
+                Padding="10"
                 Margin="0,111,92,0"
                 VerticalAlignment="Top"
                 Width="150"
                 Background="{x:Null}"
                 Click="btnNhanVien_Click">
-            <Image Source="../Images/profile.png"></Image>
+            <Image Source="../Images/medical-team.png"></Image>
         </Button>
         <Button x:Name="btnDichVu"
                 HorizontalAlignment="Left"
                 Height="150"
+                Padding="10"
                 Margin="92,330,0,0"
                 VerticalAlignment="Top"
                 Width="150"
@@ -93,34 +128,26 @@
                    VerticalAlignment="Top"
                    Width="150"
                    TextAlignment="Center" />
-        <TextBlock HorizontalAlignment="Center"
-                   Margin="0,71,0,0"
-                   FontSize="18"
-                   TextWrapping="Wrap"
-                   Text="|"
-                   VerticalAlignment="Top"
-                   Width="41"
-                   TextAlignment="Center" />
         <TextBlock x:Name="txtUser"
                    HorizontalAlignment="Left"
-                   Margin="291,73,0,0"
-                   Foreground="Blue"
+                   Margin="626,17,0,0"
                    FontSize="16"
                    TextWrapping="Wrap"
                    Text="Username"
                    VerticalAlignment="Top"
                    TextAlignment="Right"
-                   Width="103" />
+                   Width="112"
+                   FontWeight="Bold" />
         <TextBlock x:Name="txtRole"
                    HorizontalAlignment="Left"
-                   Margin="425,73,0,0"
+                   Margin="626,40,0,0"
                    Foreground="Blue"
                    FontSize="16"
                    TextWrapping="Wrap"
                    Text="Role"
                    VerticalAlignment="Top"
-                   Width="109"
-                   TextAlignment="Left"
+                   Width="112"
+                   TextAlignment="Right"
                    RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -131,41 +158,45 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <Button x:Name="btnThongBao"
+        <Button x:Name="btnCSYT"
                 HorizontalAlignment="Center"
                 Height="150"
                 Margin="0,330,0,0"
+                Padding="10"
+                VerticalAlignment="Top"
+                Width="150"
+                Background="{x:Null}"
+                Click="btnCSYT_Click">
+            <Image Source="/Images/hospital.png" />
+        </Button>
+        <TextBlock HorizontalAlignment="Center"
+                   Margin="0,493,0,0"
+                   TextWrapping="Wrap"
+                   Text="Cơ sở y tế"
+                   FontSize="16"
+                   VerticalAlignment="Top"
+                   Width="150"
+                   TextAlignment="Center" />
+        <Button x:Name="btnThongBao"
+                HorizontalAlignment="Right"
+                Height="150"
+                Margin="0,331,92,0"
+                Padding="10"
                 VerticalAlignment="Top"
                 Width="150"
                 Background="{x:Null}"
                 Click="btnThongBao_Click">
-            <Image Source="/Images/notification.png" />
+            <Image Source="/Images/notification (2).png" />
         </Button>
-        <TextBlock HorizontalAlignment="Center"
-                   Margin="0,493,0,0"
+        <TextBlock HorizontalAlignment="Right"
+                   Margin="0,493,92,0"
                    TextWrapping="Wrap"
                    Text="Thông báo"
                    FontSize="16"
                    VerticalAlignment="Top"
                    Width="150"
                    TextAlignment="Center" />
-        <Button x:Name="btnDangXuat"
-                HorizontalAlignment="Right"
-                Height="150"
-                Margin="0,331,92,0"
-                VerticalAlignment="Top"
-                Width="150"
-                Background="{x:Null}"
-                Click="btnDangXuat_Click">
-            <Image Source="/Images/logout.png" />
-        </Button>
-        <TextBlock HorizontalAlignment="Right"
-                   Margin="0,493,92,0"
-                   TextWrapping="Wrap"
-                   Text="Đăng xuất"
-                   FontSize="16"
-                   VerticalAlignment="Top"
-                   Width="150"
-                   TextAlignment="Center" />
+
+
     </Grid>
 </Window>

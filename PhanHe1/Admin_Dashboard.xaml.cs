@@ -46,16 +46,9 @@ namespace QLTT_CSYT
             Admin_Main mw = Application.Current.Windows[0] as Admin_Main;
             Admin_UserPriv admin_UserPriv = new Admin_UserPriv();
             mw.frBody.Content = admin_UserPriv.Content;
-            mw.txtTitle.Text = "Xem quyền chủ thể";
+            mw.txtTitle.Text = "Quản lý quyền";
         }
 
-        private void btnGrant_Click(object sender, RoutedEventArgs e)
-        {
-            Admin_Main mw = Application.Current.Windows[0] as Admin_Main;
-            Admin_GrantPrivxaml admin_GrantPriv = new Admin_GrantPrivxaml();
-            mw.frBody.Content = admin_GrantPriv.Content;
-            mw.txtTitle.Text = "Gán/Thu hồi quyền";
-        }
 
         private void btnMaHoa_Click(object sender, RoutedEventArgs e)
         {

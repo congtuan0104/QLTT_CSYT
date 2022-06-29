@@ -26,7 +26,7 @@
                     Height="250"
                     FontSize="24"
                     Content="Quản lý user/role"
-                    Margin="0,0,30,0"
+                    Margin="0,0,100,0"
                     Click="btnAllUser_Click"
                     Background="#FF627DD2">
 
@@ -36,28 +36,12 @@
                     Width="250"
                     Height="250"
                     FontSize="24"
-                    Margin="0,0,30,0"
+                    Margin="0,0,100,0"
                     Background="#FF627DD2"
                     Click="btnPriv_Click">
                 <Button.Content>
                     <TextBlock TextWrapping="Wrap"
-                               Text="Xem quyền của user/role"
-                               TextAlignment="Center">
-                    </TextBlock>
-                </Button.Content>
-            </Button>
-
-            <Button x:Name="btnGrant"
-                    Width="250"
-                    Height="250"
-                    Background="#FF627DD2"
-                    Margin="0,0,30,0"
-                    Click="btnGrant_Click">
-                <Button.Content>
-                    <TextBlock TextWrapping="Wrap"
-                               FontSize="24"
-                               Text="Cấp quyền 
-                               Thu hồi quyền"
+                               Text="Quản lý quyền"
                                TextAlignment="Center">
                     </TextBlock>
                 </Button.Content>
@@ -81,7 +65,7 @@
                 VerticalAlignment="Top"
                 Width="250"
                 Height="250"
-                Margin="45,377,0,0"
+                Margin="115,377,0,0"
                 Background="#FF627DD2">
 
         </Button>
@@ -92,21 +76,21 @@
                 VerticalAlignment="Top"
                 Width="250"
                 Height="250"
-                Margin="885,377,0,0"
+                Margin="815,377,0,0"
                 Background="#FF627DD2"
                 Click="btnAudit_Click" />
         <Button x:Name="btnObject"
                 FontSize="24"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Width="250"
                 Height="250"
-                Margin="323,377,0,0"
+                Margin="0,377,0,0"
                 Background="#FF627DD2"
                 Click="btnObject_Click">
             <Button.Content>
                 <TextBlock TextWrapping="Wrap"
-                    Text="User Objects"
+                           Text="User Objects"
                            Width="215"
                            TextAlignment="Center" />
             </Button.Content>

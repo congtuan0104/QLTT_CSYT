@@ -58,7 +58,7 @@ namespace QLTT_CSYT
                     }
                     if (col.Default != null && col.Default.Length > 0)
                     {
-                        sql = sql + " DEFULT " + col.Default.ToUpper();
+                        sql = sql + " DEFAULT " + col.Default.ToUpper();
                     }
                     if (i < cols.Count - 1)
                         sql = sql + ",";
@@ -88,8 +88,11 @@ namespace QLTT_CSYT
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            Class.DB_Config.RunSQL(tbScript.Text);
-            MessageBox.Show("Tạo bảng thành công");
+            if(!Class.DB_Config.RunSQL(tbScript.Text))
+            {
+                MessageBox.Show("Tạo bảng thành công");
+            }    
+            
             this.Close();
         }
 

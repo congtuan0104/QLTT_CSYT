@@ -54,11 +54,7 @@
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
-                                <TextBlock Text="Xem quyền chủ thể"
-                                           FontSize="16" />
-                            </ListBoxItem>
-                            <ListBoxItem Height="44">
-                                <TextBlock Text="Gán/Thu hồi quyền"
+                                <TextBlock Text="Quản lý quyền"
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">

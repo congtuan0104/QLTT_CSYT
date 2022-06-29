@@ -24,67 +24,219 @@ namespace QLTT_CSYT
         public Admin_UserPriv()
         {
             InitializeComponent();
-        }
-        private void Admin_UserPriv_Loading(object sender, EventArgs e)
-        {
             LoadDataGridView();
+            GetAllObject();
+            GetAllRole();
         }
+
+        private void GetAllRole()
+        {
+            string sql = "SELECT GRANTED_ROLE AS ROLE FROM USER_ROLE_PRIVS WHERE GRANTED_ROLE != 'RESOURCE'";
+            DataTable dt = new DataTable();
+            dt = Class.DB_Config.GetDataToTable(sql);
+            cbRole.Items.Clear();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                cbRole.Items.Add(dt.Rows[i]["ROLE"]);
+            }
+        }
+
+        private void GetAllObject()
+        {
+            DataTable dt = new DataTable();
+            string sql = "SELECT OBJECT_NAME" +
+                " FROM USER_OBJECTS " +
+                "WHERE OBJECT_TYPE != 'SEQUENCE' AND " +
+                "OBJECT_TYPE != 'INDEX' AND " +
+                "OBJECT_TYPE != 'TRIGGER'";
+            dt = Class.DB_Config.GetDataToTable(sql);
+            cbTable.Items.Clear();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                cbTable.Items.Add(dt.Rows[i]["OBJECT_NAME"]);
+            }
+        }
+
         private void LoadDataGridView()
         {
             string sql;
             sql= "SELECT GRANTEE,PRIVILEGE,TABLE_NAME FROM USER_TAB_PRIVS";
             tblUser = Class.DB_Config.GetDataToTable(sql); //Đọc dữ liệu từ bảng
+            dgvUserPriv.ItemsSource = null;
             dgvUserPriv.ItemsSource = tblUser.DefaultView; //Nguồn dữ liệu            
-            //dgvUserPriv.Columns[0].Header = "1";
-            //dgvUserPriv.Columns[1].Header = "2";
-            //dgvUserPriv.Columns[2].Header = "TABLE_NAME";
-            //dgvUser.Columns[3].Header = "Expiry Date";
-            //dgvUser.Columns[4].Header = "Last Login";
-            dgvUserPriv.AutoGenerateColumns = true;
-        }
-       
-        private void dgvUserPriv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
+
         }
 
         private void btn_User_Click(object sender, RoutedEventArgs e)
         {
             string sql;
-            sql = "SELECT u.GRANTEE,u.PRIVILEGE,u.TABLE_NAME,r.GRANTED_ROLE AS ROLE FROM USER_TAB_PRIVS u ,DBA_ROLE_PRIVS r  WHERE u.GRANTEE = r.GRANTEE AND 1=1";
-            if (txtUser.Text =="")
+            if (txtUser.Text =="" || txtUser.Text == null)
             {
-                MessageBox.Show("Nhập username !!!", "Yêu cầu ...", MessageBoxButton.OK);
+                MessageBox.Show("Nhập user hoặc role !!!", "Yêu cầu ...", MessageBoxButton.OK);
                 return;
             }
-            if (txtUser.Text != "")
-                sql = sql + " AND u.GRANTEE LIKE N'%" + txtUser.Text.ToUpper() + "%'";
+
+
+            if(rd1.IsChecked == false)
+            {
+                sql = "SELECT GRANTEE,PRIVILEGE,TABLE_NAME AS OBJECT_NAME, " +
+                "GRANTOR, TYPE FROM USER_TAB_PRIVS" +
+                " WHERE GRANTEE ='" + txtUser.Text.ToUpper() + "'";
+            }
+            else
+            {
+                sql = "SELECT DISTINCT GRANTEE, GRANTED_ROLE " +
+                    "FROM DBA_ROLE_PRIVS WHERE GRANTEE = '" + txtUser.Text.ToUpper() + "'";
+            }
+
             tblUser = Class.DB_Config.GetDataToTable(sql);
+            dgvUserPriv.ItemsSource = null;
             dgvUserPriv.ItemsSource = tblUser.DefaultView;
-            //if (tblUser.Rows.Count == 0)
-            //{
-            //    MessageBox.Show("Không có bản ghi thỏa mãn điều kiện!!", "Thông báo", MessageBoxButton.OK);
-            //}
+
         }
 
-        private void btn_Role_Click(object sender, RoutedEventArgs e)
+       
+
+        private void btn_GrantPriv_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbRole.IsEnabled == false)
+            {
+                string priv = cbPriv.Text;
+                string tab = cbTable.Text;
+                string grantee = tbGrantee.Text.ToUpper();
+                string sql;
+
+                if (priv == "Xem (Select)")
+                    priv = "SELECT";
+                else if (priv == "Xoá (Delete)")
+                    priv = "DELETE";
+                else if (priv == "Thêm (Insert)")
+                    priv = "INSERT";
+                else if (priv == "Sửa (Update)")
+                    priv = "UPDATE";
+                else if (priv == "Thực thi (Excute)")
+                    priv = "EXCUTE";
+
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSqlDel(sql);
+
+                if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
+                {
+                    sql = "GRANT " + priv + " ON " + tab + " TO " + grantee;
+                }
+                else
+                {
+                    sql = "GRANT " + priv + " ON " + tab + " TO '" + grantee + "'";
+                }
+
+                
+                Class.DB_Config.RunSqlDel(sql);
+
+            }
+            else
+            {
+                string role = cbRole.Text;
+                string grantee = tbGrantee.Text.ToUpper();
+                string sql;
+
+
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSqlDel(sql);
+
+                if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
+                {
+                    sql = "GRANT " + role + " TO " + grantee;
+                }
+                else
+                {
+                    sql = "GRANT " + role + " TO '" + grantee + "'";
+                }
+                if (cbAdminOption.IsChecked == true)
+                {
+                    sql = sql + " WITH ADMIN OPTION";
+                }
+                MessageBox.Show(sql);
+                Class.DB_Config.RunSqlDel(sql);
+            }
+            MessageBox.Show("Thao tác gán quyền thành công");
+        }
+
+        private void btnRevoke_Click(object sender, RoutedEventArgs e)
         {
             string sql;
-            sql = "SELECT ROLE,PRIVILEGE,TABLE_NAME FROM ROLE_TAB_PRIVS  WHERE 1=1";
-            if (txtRoleName.Text == "")
+            if (cbRole.IsEnabled == false)
             {
-                MessageBox.Show("Nhập tên role mong muốn!!!", "Yêu cầu ...", MessageBoxButton.OK);
-                return;
-            }   
-            if (txtRoleName.Text != "")
-                sql = sql + " AND ROLE LIKE N'%" + txtRoleName.Text + "%'";
-            tblUser = Class.DB_Config.GetDataToTable(sql);
-            dgvUserPriv.ItemsSource = tblUser.DefaultView;
-            if (tblUser.Rows.Count == 0)
-            {
-                MessageBox.Show("Không có bản ghi thỏa mãn điều kiện!!", "Thông báo", MessageBoxButton.OK);
+                string priv = cbPriv.Text;
+                string tab = cbTable.Text;
+                string grantee = tbGrantee.Text.ToUpper();
+                
+
+                if (priv == "Xem (Select)")
+                    priv = "SELECT";
+                else if (priv == "Xoá (Delete)")
+                    priv = "DELETE";
+                else if (priv == "Thêm (Insert)")
+                    priv = "INSERT";
+                else if (priv == "Sửa (Update)")
+                    priv = "UPDATE";
+                else if (priv == "Thực thi (Excute)")
+                    priv = "EXCUTE";
+
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSqlDel(sql);
+
+                if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
+                {
+                    sql = "REVOKE " + priv + " ON " + tab + " FROM " + grantee;
+                }
+                else
+                {
+                    sql = "REVOKE " + priv + " ON " + tab + " FROM '" + grantee + "'";
+                }
+                
             }
-          
+            else
+            {
+                string role = cbRole.Text;
+                string grantee = tbGrantee.Text.ToUpper();
+
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSQL(sql);
+
+                if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
+                {
+                    sql = "REVOKE " + role + " FROM " + grantee;
+                }
+                else
+                {
+                    sql = "REVOKE " + role + " FROM '" + grantee + "'";
+                }
+
+            }
+            Class.DB_Config.RunSqlDel(sql);
+            MessageBox.Show("Thao tác thu hồi quyền thành công");
+        }
+
+        private void rdCheck(object sender, RoutedEventArgs e)
+        {
+            var button = sender as RadioButton;
+
+            string temp = button.Content.ToString();
+
+            if (temp == "Gán quyền")
+            {
+                cbRole.IsEnabled = false;
+                cbPriv.IsEnabled = true;
+                cbTable.IsEnabled = true;
+                cbAdminOption.IsEnabled = false;
+            }
+            else
+            {
+                cbRole.IsEnabled = true;
+                cbPriv.IsEnabled = false;
+                cbTable.IsEnabled = false;
+                cbAdminOption.IsEnabled = true;
+            }
         }
     }
 }

@@ -91,7 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Admin_CreateTable.xaml.cs">
+    <Compile Include="PhanHe1\Admin_CreateTable.xaml.cs">
       <DependentUpon>Admin_CreateTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhanHe1\Admin_Object.xaml.cs">
@@ -142,7 +142,7 @@
     <Compile Include="PhanHe2\ThemDV_HSBA.xaml.cs">
       <DependentUpon>ThemDV_HSBA.xaml</DependentUpon>
     </Compile>
-    <Page Include="Admin_CreateTable.xaml">
+    <Page Include="PhanHe1\Admin_CreateTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,10 +194,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PhanHe1\Admin_GrantPrivxaml.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PhanHe1\Admin_Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,9 +226,6 @@
     </Compile>
     <Compile Include="PhanHe1\Admin_Dashboard.xaml.cs">
       <DependentUpon>Admin_Dashboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PhanHe1\Admin_GrantPrivxaml.xaml.cs">
-      <DependentUpon>Admin_GrantPrivxaml.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhanHe1\Admin_Main.xaml.cs">
       <DependentUpon>Admin_Main.xaml</DependentUpon>

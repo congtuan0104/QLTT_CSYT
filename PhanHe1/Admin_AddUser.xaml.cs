@@ -45,10 +45,13 @@ namespace QLTT_CSYT
         {
             if (user.IsChecked == true)
             {
+                if(txbPass.Password == null)
+                {
+                    MessageBox.Show("Bạn chưa nhập mật khẩu");
+                    return;
+                }
                 string username = txbUser.Text.ToString();
                 string password = txbPass.Password.ToString();
-
-                string role = cbRole.SelectedValue.ToString();
                 string sql;
 
                 //sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
@@ -69,6 +72,7 @@ namespace QLTT_CSYT
 
                 if (cbRole.SelectedIndex>=0)
                 {
+                    string role = cbRole.SelectedValue.ToString();
                     if (((username[0] >= 'a') && (username[0] <= 'z')) || ((username[0] >= 'A') && (username[0] <= 'Z')))
                     {
                         sql = "GRANT " + role + " TO " + username;

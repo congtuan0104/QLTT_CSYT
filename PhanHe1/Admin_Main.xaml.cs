@@ -74,18 +74,13 @@ namespace QLTT_CSYT
                 frBody.Content = admin_UserList.Content;
                 txtTitle.Text = "Quản lý user và role";
             }
-            else if(select == "Xem quyền chủ thể")
+            else if(select == "Quản lý quyền")
             {
                 Admin_UserPriv admin_UserPriv = new Admin_UserPriv();
                 frBody.Content = admin_UserPriv.Content;
-                txtTitle.Text = "Xem quyền chủ thể";
+                txtTitle.Text = "Quản lý quyền";
             }
-            else if (select == "Gán/Thu hồi quyền")
-            {
-                Admin_GrantPrivxaml admin_GrantPrivxaml = new Admin_GrantPrivxaml();
-                frBody.Content = admin_GrantPrivxaml.Content;
-                txtTitle.Text = "Gán/Thu hồi quyền";
-            }
+            
             else if (select == "Mã hoá")
             {
 

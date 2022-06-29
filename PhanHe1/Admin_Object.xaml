@@ -20,7 +20,7 @@
         <DataGrid x:Name="dgvObject"
                   materialDesign:DataGridAssist.CellPadding="24 14 14 14"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14"
-                  Margin="45,145,326,46" />
+                  Margin="63,147,308,100" />
         <TextBlock HorizontalAlignment="Left"
                    Margin="500,42,0,0"
                    TextWrapping="Wrap"
@@ -73,7 +73,7 @@
         <Button x:Name="btnCreate"
                 Content="Tạo bảng mới"
                 HorizontalAlignment="Left"
-                Margin="948,94,0,0"
+                Margin="391,611,0,0"
                 VerticalAlignment="Top"
                 Click="btnCreate_Click" />
 

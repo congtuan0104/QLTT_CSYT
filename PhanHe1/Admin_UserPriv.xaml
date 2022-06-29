@@ -15,58 +15,144 @@
         mc:Ignorable="d"
         Title="Admin_UserPriv"
         Height="693"
-        Width="1180"
-        Initialized="Admin_UserPriv_Loading">
+        Width="1180">
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill"/>
+            <ImageBrush Stretch="UniformToFill" />
         </Grid.Background>
-
-        <TextBlock Text="Nhập thông tin user" 
-                    Width="213"
-                                   VerticalAlignment="Top"
-                                   Foreground="White"
-                                   FontSize="24"
-                                   HorizontalAlignment="Left" Margin="60,46,0,0"
-                   />
-        <TextBox Name="txtUser" Margin="278,36,666,604" Height="37" Background="White" />
-        <Button Name="btn_User" Style="{DynamicResource MaterialDesignToolButton}" Margin="514,41,626,604" Background="{DynamicResource MaterialDesignCardBackground}" Click="btn_User_Click">
+        <TextBox Name="txtUser"
+                 Margin="56,40,888,600"
+                 Height="37"
+                 Padding="10"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Hint="Grantee"
+                 Background="White" />
+        <Button Name="btn_User"
+                Style="{DynamicResource MaterialDesignToolButton}"
+                Margin="295,43,845,602"
+                Background="{DynamicResource MaterialDesignCardBackground}"
+                Click="btn_User_Click">
             <materialDesign:PackIcon Kind="Search"
-                                                             Opacity=".56"
-                                                             Height="42"
-                                                             Width="32" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                     Opacity=".56"
+                                     Height="42"
+                                     Width="32"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center">
                 <materialDesign:PackIcon.Background>
-                    <ImageBrush/>
+                    <ImageBrush />
                 </materialDesign:PackIcon.Background>
             </materialDesign:PackIcon>
-        </Button>
-        <TextBox  Name="txtRoleName" Margin="779,36,130,604" Height="37" Background="White" RenderTransformOrigin="0.503,0.806"  />
-        <TextBlock Text="Nhập tên role" Margin="626,46,0,0"
-                   Width="153"
-                                   VerticalAlignment="Top"
-                                   Foreground="White"
-                                   FontSize="24"
-                                   HorizontalAlignment="Left" />
-
-        <Button  Name="btn_Role" Style="{DynamicResource MaterialDesignToolButton}" Margin="1050,39,84,606" Click="btn_Role_Click">
-            <Button.Background>
-                <SolidColorBrush Color="{DynamicResource Primary300Foreground}"/>
-            </Button.Background>
-            <materialDesign:PackIcon Kind="Search"
-                                                             Opacity=".56"
-                                                             Height="42"
-                                                             Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
         </Button>
         <DataGrid x:Name="dgvUserPriv"
                   ItemsSource="{Binding}"
                   CanUserAddRows="False"
                   SelectionUnit="FullRow"
                   SelectionMode="Extended"
-                  Margin="20,109,20,33"
+                  Margin="52,111,337,31"
                   FontSize="14"
                   IsReadOnly="True"
                   materialDesign:DataGridAssist.CellPadding="24 14 14 14"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" SelectionChanged="dgvUserPriv_SelectionChanged" />
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" />
+        <RadioButton HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     GroupName="select"
+                     Margin="887,119,0,0"
+                     FontSize="20"
+                     Checked="rdCheck"
+                     Content="Gán quyền">
+
+        </RadioButton>
+        <RadioButton HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="889,306,0,0"
+                     Checked="rdCheck"
+                     FontSize="20"
+                     GroupName="select"
+                     Content="Gán role">
+
+        </RadioButton>
+        <ComboBox x:Name="cbPriv"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Quyền (Privileges)"
+                  Background="White"
+                  Width="256"
+                  IsEnabled="False"
+                  Margin="885,160,39,0"
+                  VerticalAlignment="Top">
+            <ComboBoxItem Content="Xem (Select)"></ComboBoxItem>
+            <ComboBoxItem Content="Thêm (Insert)"></ComboBoxItem>
+            <ComboBoxItem Content="Xoá (Delete)"></ComboBoxItem>
+            <ComboBoxItem Content="Sửa (Update)"></ComboBoxItem>
+            <ComboBoxItem Content="Thực thi (Excute)"></ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="cbTable"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Đối tượng (Object)"
+                  Background="White"
+                  Width="256"
+                  IsEnabled="False"
+                  Margin="885,223,39,0"
+                  VerticalAlignment="Top">
+
+        </ComboBox>
+
+        <ComboBox x:Name="cbRole"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Role"
+                  Background="White"
+                  Width="256"
+                  Margin="885,336,39,0"
+                  IsEnabled="False"
+                  VerticalAlignment="Top" />
+
+        <TextBox x:Name="tbGrantee"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 VerticalAlignment="Top"
+                 Background="White"
+                 Width="256"
+                 materialDesign:HintAssist.Hint="Đối tượng chịu ảnh hưởng (Grantee)"
+                 Margin="885,430,39,0" />
+
+        <Button x:Name="btnGrantPriv"
+                Height="50"
+                Margin="887,588,187,39"
+                Click="btn_GrantPriv_Click">
+            Gán quyền
+        </Button>
+
+        <Button x:Name="btnRevoke"
+                Height="50"
+                Background="#FFC53434"
+                Margin="1035,588,39,39"
+                Click="btnRevoke_Click">
+            Thu hồi
+        </Button>
+        <CheckBox x:Name="cbAdminOption"
+                  Content="With Admin option"
+                  HorizontalAlignment="Left"
+                  FontSize="20"
+                  IsChecked="False"
+                  Margin="886,510,0,0"
+                  VerticalAlignment="Top" />
+        <RadioButton x:Name="rd1"
+                     Content="Các role được gán"
+                     FontSize="16"
+                     HorizontalAlignment="Left"
+                     Margin="404,50,0,0"
+                     VerticalAlignment="Top" />
+        <RadioButton Content="Các quyền được gán"
+                     FontSize="16"
+                     IsChecked="True"
+                     HorizontalAlignment="Left"
+                     Margin="631,50,0,0"
+                     VerticalAlignment="Top" />
+        <Rectangle HorizontalAlignment="Left"
+                   Height="74"
+                   Margin="885,22,0,0"
+                   Stroke="Black"
+                   VerticalAlignment="Top"
+                   Width="256" />
 
     </Grid>
 </Window>

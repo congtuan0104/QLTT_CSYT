@@ -36,8 +36,8 @@ namespace QLTT_CSYT
                 string role = cbRole.Text.ToString();
                 string sql;
 
-                sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
-                Class.DB_Config.RunSqlDel(sql);
+                //sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
+                //Class.DB_Config.RunSqlDel(sql);
 
                 if (((username[0] >= 'a') && (username[0] <= 'z')) || ((username[0] >= 'A') && (username[0] <= 'Z')))
                 {
@@ -73,8 +73,8 @@ namespace QLTT_CSYT
                 
                 string rolename = txbrole.Text.ToString();
                 string sql;
-                sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
-                Class.DB_Config.RunSqlDel(sql);
+                //sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
+                //Class.DB_Config.RunSqlDel(sql);
                 sql = "CREATE ROLE " + rolename;
                 
                 Class.DB_Config.RunSqlDel(sql);

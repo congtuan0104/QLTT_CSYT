@@ -19,12 +19,26 @@ namespace QLTT_CSYT
     /// </summary>
     public partial class Admin_Main : Window
     {
+        System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         public Admin_Main()
         {
             InitializeComponent();
+            Timer.Tick += new EventHandler(Timer_Click);
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Start();
+
             Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
             frBody.Content = admin_Dashboard.Content;
-            txtTitle.Text = "Home";
+            txtTitle.Text = "Trang chủ";
+        }
+
+        private void Timer_Click(object sender, EventArgs e)
+        {
+            DateTime d;
+            d = DateTime.Now;
+            txtTime.Text = d.ToString("dd") + "-" + d.ToString("MM") + "-" + d.ToString("yyyy")
+                + "         |         " + d.ToString("hh") + ":" 
+                + d.ToString("mm") + ":" + d.ToString("ss") + " " + d.ToString("tt");
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -42,31 +56,39 @@ namespace QLTT_CSYT
             string select = tb.Text;
 
 
-            if (select == "HOME")
+            if (select == "Trang chủ")
             {
                 Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
                 frBody.Content = admin_Dashboard.Content;
-                txtTitle.Text = "Home";
+                txtTitle.Text = "Trang chủ";
             }
-            else if (select == "ALL USERS")
+            else if (select == "Quản lý user")
             {
                 Admin_UserList admin_UserList = new Admin_UserList();
                 frBody.Content = admin_UserList.Content;
-                txtTitle.Text = "All users";
+                txtTitle.Text = "Quản lý user";
             }
-            else if(select == "USER/ROLE PRIVILEGES")
+            else if(select == "Xem quyền chủ thể")
             {
                 Admin_UserPriv admin_UserPriv = new Admin_UserPriv();
                 frBody.Content = admin_UserPriv.Content;
-                txtTitle.Text = "User/Role Privileges";
+                txtTitle.Text = "Xem quyền chủ thể";
             }
-            else if (select == "GRANT/REVOKE PRIVILEGES")
+            else if (select == "Gán/Thu hồi quyền")
             {
                 Admin_GrantPrivxaml admin_GrantPrivxaml = new Admin_GrantPrivxaml();
                 frBody.Content = admin_GrantPrivxaml.Content;
-                txtTitle.Text = "Grant/Revoke Privileges";
+                txtTitle.Text = "Gán/Thu hồi quyền";
             }
-            else
+            else if (select == "Mã hoá")
+            {
+
+            }
+            else if (select == "Audit")
+            {
+
+            }
+            else if (select == "Đăng xuất")
             {
                 Class.DB_Config.Disconnect();
                 Login mainWindow = new Login();
@@ -77,5 +99,6 @@ namespace QLTT_CSYT
             drawer.IsLeftDrawerOpen = false;
 
         }
+
     }
 }

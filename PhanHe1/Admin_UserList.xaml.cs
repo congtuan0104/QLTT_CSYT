@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -46,13 +47,13 @@ namespace QLTT_CSYT
                 "FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'USERS'";
 
             tblUser = Class.DB_Config.GetDataToTable(sql); //Đọc dữ liệu từ bảng
-            dgvUser.ItemsSource = tblUser.DefaultView; //Nguồn dữ liệu            
-            //dgvUser.Columns[0].Header = "Username";
-            //dgvUser.Columns[1].Header = "Status";
-            //dgvUser.Columns[2].Header = "Created date";
-            //dgvUser.Columns[3].Header = "Expiry Date";
-            //dgvUser.Columns[4].Header = "Last Login";
-            dgvUser.AutoGenerateColumns = true;
+            
+            dgvUser.ItemsSource = tblUser.DefaultView; //Nguồn dữ liệu
+
+            dgvUser.Items.SortDescriptions.Clear();
+            dgvUser.Items.SortDescriptions.Add(new SortDescription("CREATED", ListSortDirection.Descending));
+            dgvUser.Items.Refresh();
+
             btnDeleteUser.IsEnabled = false;
             btnDetail.IsEnabled = false;
             btnChangePass.IsEnabled = false;
@@ -98,8 +99,8 @@ namespace QLTT_CSYT
             string sql;
             if (MessageBox.Show("Xác nhận xoá tài khoản này!!!", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                sql = "alter session set \"_oracle_script\"=true";              
-                Class.DB_Config.RunSqlDel(sql);
+                //sql = "alter session set \"_oracle_script\"=true";              
+                //Class.DB_Config.RunSqlDel(sql);
 
                 if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z'))){
                     sql = "DROP USER " + Username + " CASCADE";
@@ -117,8 +118,8 @@ namespace QLTT_CSYT
         private void btnLock_Click(object sender, RoutedEventArgs e)
         {
             string sql;
-            sql = "alter session set \"_oracle_script\"=true";
-            Class.DB_Config.RunSqlDel(sql);
+            //sql = "alter session set \"_oracle_script\"=true";
+            //Class.DB_Config.RunSqlDel(sql);
 
             if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
             {
@@ -135,8 +136,8 @@ namespace QLTT_CSYT
         private void btnUnlock_Click(object sender, RoutedEventArgs e)
         {
             string sql;
-            sql = "alter session set \"_oracle_script\"=true";
-            Class.DB_Config.RunSqlDel(sql);
+            //sql = "alter session set \"_oracle_script\"=true";
+            //Class.DB_Config.RunSqlDel(sql);
             if (((Username[0] >= 'a') && (Username[0] <= 'z')) || ((Username[0] >= 'A') && (Username[0] <= 'Z')))
             {
                 sql = "ALTER USER " + Username + " ACCOUNT UNLOCK";

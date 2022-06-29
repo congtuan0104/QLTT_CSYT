@@ -38,7 +38,7 @@ namespace QLTT_CSYT
                 command.CommandType = CommandType.Text;
                 command.CommandText = "SELECT * FROM QLTT.DICHVU " +
                     "WHERE MADV NOT IN (SELECT MADV " +
-                    "FROM QLTT.HSBA_DV WHERE MAHSBA = " + mahs + ")";
+                    "FROM QLTT.V_CT_HSBA WHERE MAHSBA = " + mahs + ")";
                 command.Connection = Class.DB_Config.Con;
                 OracleDataReader reader = command.ExecuteReader();
 

@@ -33,6 +33,7 @@ namespace QLTT_CSYT
             {              
                 string sql = "SELECT * FROM QLTT.BENHNHAN";
                 tblBenhNhan = Class.DB_Config.GetDataToTable(sql);
+                dgvDSBN.ItemsSource = null;
                 dgvDSBN.ItemsSource = tblBenhNhan.DefaultView;
             }
 
@@ -90,8 +91,8 @@ namespace QLTT_CSYT
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             ThemBenhNhan themBenhNhan = new ThemBenhNhan();
-            themBenhNhan.Show();
-            this.Close();
+            themBenhNhan.ShowDialog();
+            LayDSBenhNhan();
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
@@ -99,23 +100,30 @@ namespace QLTT_CSYT
             DataRowView BN_Selected = dgvDSBN.SelectedItem as DataRowView;
             int MaBN = Int32.Parse(BN_Selected.Row["MABN"].ToString());
             ChinhSuaBenhNhan chinhSuaBenhNhan = new ChinhSuaBenhNhan(MaBN);
-            chinhSuaBenhNhan.Show();
-            this.Close();
+            chinhSuaBenhNhan.ShowDialog();
+            LayDSBenhNhan();
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             DataRowView BN_Selected = dgvDSBN.SelectedItem as DataRowView;
-            string MaBN = BN_Selected.Row["MABN"].ToString();            
-            
+            string MaBN = BN_Selected.Row["MABN"].ToString();
+            string CMND = BN_Selected.Row["CMND"].ToString();
+
             string message = "Bạn có chắc muốn xoá bệnh nhân ?";
             // Thực hiện xoá khách hàng
             if (MessageBox.Show(message, "Cảnh báo", MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 string sql = "DELETE QLTT.BenhNhan WHERE MaBN = " + MaBN;
-                
-                Class.DB_Config.RunSqlDel(sql);
+
+                if (Class.DB_Config.RunSQL(sql))
+                {
+                    sql = "DROP USER U" + CMND + " CASCADE";
+                    Class.DB_Config.RunSQL(sql);
+                }
+
+                LayDSBenhNhan();
             }
             return;
         }

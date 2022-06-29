@@ -50,8 +50,8 @@ namespace QLTT_CSYT
             }
 
             string sql;
-            sql = "alter session set \"_oracle_script\"=true";
-            Class.DB_Config.RunSqlDel(sql);
+            //sql = "alter session set \"_oracle_script\"=true";
+            //Class.DB_Config.RunSqlDel(sql);
 
 
             if (((user[0] >= 'a') && (user[0] <= 'z')) || ((user[0] >= 'A') && (user[0] <= 'Z')))

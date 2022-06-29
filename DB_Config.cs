@@ -19,7 +19,7 @@ namespace QLTT_CSYT.Class
         {
             string host = "localhost";
             string port = "1521";
-            string sid = "xe";
+            string sid = "OLS_QLTT";
 
             string strConn = "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = "
             + host + ")(PORT = " + port + "))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = "
@@ -86,16 +86,13 @@ namespace QLTT_CSYT.Class
 
         public static bool RunSQL(string sql)
         {
-            sql = "((" + sql + "))";
-            OracleCommand cmd;
-            cmd = new OracleCommand();
+            OracleCommand cmd = new OracleCommand();
             cmd.Connection = Con;
             cmd.CommandText = sql;
+            int kq = 0;
             try
             {
-                int kq = cmd.ExecuteNonQuery();
-                if (kq > 0)
-                    return true;
+                kq = cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -103,6 +100,8 @@ namespace QLTT_CSYT.Class
             }
             cmd.Dispose();
             cmd = null;
+            if (kq > 0)
+                return true;
             return false;
         }
 
@@ -122,17 +121,6 @@ namespace QLTT_CSYT.Class
             }
             cmd.Dispose();
             cmd = null;
-        }
-
-        public static OracleDataReader GetDataToReader(string sql)
-        {
-            sql = "((" + sql + "))";
-            OracleCommand command = new OracleCommand();
-            command.CommandType = CommandType.Text;
-            command.CommandText = sql;
-            command.Connection = DB_Config.Con;
-            OracleDataReader reader = command.ExecuteReader();
-            return reader;
         }
     }
 

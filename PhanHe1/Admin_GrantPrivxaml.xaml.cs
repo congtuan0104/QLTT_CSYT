@@ -40,8 +40,8 @@ namespace QLTT_CSYT
                 else
                     priv = "UPDATE";
 
-                sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSqlDel(sql);
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSqlDel(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {
@@ -62,8 +62,8 @@ namespace QLTT_CSYT
                 string sql;
                
 
-                sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSqlDel(sql);
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSqlDel(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {
@@ -95,8 +95,8 @@ namespace QLTT_CSYT
                 else
                     priv = "UPDATE";
 
-                sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSqlDel(sql);
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSqlDel(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {
@@ -116,8 +116,8 @@ namespace QLTT_CSYT
                 string grantee = tbGrantee.Text.ToUpper();
                 string sql;
 
-                sql = "alter session set \"_oracle_script\"=true";
-                Class.DB_Config.RunSQL(sql);
+                //sql = "alter session set \"_oracle_script\"=true";
+                //Class.DB_Config.RunSQL(sql);
 
                 if (((grantee[0] >= 'a') && (grantee[0] <= 'z')) || ((grantee[0] >= 'A') && (grantee[0] <= 'Z')))
                 {

@@ -112,7 +112,7 @@ namespace QLTT_CSYT
             if (MessageBox.Show(message, "Cảnh báo", MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                string sql = "DELETE QLTT.HSBA_DV WHERE MAHSBA = " + tbMaHS.Text + " AND MADV + " + MaDV;
+                string sql = "DELETE QLTT.HSBA_DV WHERE MAHSBA = " + tbMaHS.Text + " AND MADV = " + MaDV;               
                 Class.DB_Config.RunSqlDel(sql);
                 HienThiDV(Int32.Parse(tbMaHS.Text));
             }

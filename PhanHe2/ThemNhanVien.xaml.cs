@@ -28,18 +28,42 @@ namespace QLTT_CSYT
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            string sql = "INSERT INTO QLTT.NHANVIEN(CSYT, HOTEN, CMND, NGAYSINH, PHAI, " +
-                "SODT, QUEQUAN, VAITRO, CHUYENKHOA) " +
-                "VALUES(:macsyt, :tennv, :cmnd, :ngaysinh, :phai, :sdt, :quequan, " +
-                ":vaitro, :chuyenkhoa)";
+            string sql;
+            OracleCommand command = new OracleCommand();
+            command.CommandType = CommandType.Text;
+            
+            if (tbMaCSYT.Text.Length > 0)
+            {
+                command.Parameters.Add(":macsyt", OracleDbType.Int32).Value = Int32.Parse(tbMaCSYT.Text);
+                if (tbChuyenKhoa.Text.Length > 0)
+                {
+                    sql = "INSERT INTO QLTT.NHANVIEN(CSYT, HOTEN, CMND, NGAYSINH, PHAI, " +
+                            "SODT, QUEQUAN, VAITRO, CHUYENKHOA) " +
+                            "VALUES(:macsyt, :tennv, :cmnd, :ngaysinh, :phai, :sdt, :quequan, " +
+                            ":vaitro, :chuyenkhoa)";
+                    command.Parameters.Add(":chuyenkhoa", OracleDbType.Int32).Value = Int32.Parse(tbChuyenKhoa.Text);
+                }
+                else
+                {
+                    sql = "INSERT INTO QLTT.NHANVIEN(CSYT, HOTEN, CMND, NGAYSINH, PHAI, " +
+                            "SODT, QUEQUAN, VAITRO) " +
+                            "VALUES(:macsyt, :tennv, :cmnd, :ngaysinh, :phai, :sdt, :quequan, " +
+                            ":vaitro)";
+                }
+            }
+            else
+            {
+                sql = "INSERT INTO QLTT.NHANVIEN(HOTEN, CMND, NGAYSINH, PHAI, " +
+                            "SODT, QUEQUAN, VAITRO) " +
+                            "VALUES(:tennv, :cmnd, :ngaysinh, :phai, :sdt, :quequan, " +
+                            ":vaitro)";
+            }
+
             try
             {
-                OracleCommand command = new OracleCommand();
-                command.CommandType = CommandType.Text;
                 command.CommandText = sql;
                 command.Connection = Class.DB_Config.Con;
-
-                command.Parameters.Add(":macsyt", OracleDbType.Int32).Value = Int32.Parse(tbMaCSYT.Text);
+                
                 command.Parameters.Add(":tennv", OracleDbType.NVarchar2).Value = tbTenNV.Text;
                 command.Parameters.Add(":cmnd", OracleDbType.Char).Value = tbCMND.Text;
                 command.Parameters.Add(":ngaysinh", OracleDbType.Date).Value = dpNgaySinh.SelectedDate;
@@ -47,12 +71,30 @@ namespace QLTT_CSYT
                 command.Parameters.Add(":sdt", OracleDbType.Char).Value = tbSDT.Text;
                 command.Parameters.Add(":quequan", OracleDbType.NVarchar2).Value = tbQueQuan.Text;
                 command.Parameters.Add(":vaitro", OracleDbType.NVarchar2).Value = cbVaiTro.Text;
-                command.Parameters.Add(":chuyenkhoa", OracleDbType.Int32).Value = Int32.Parse(tbChuyenKhoa.Text);
+                
+                MessageBox.Show(cbVaiTro.Text);
+                int kq = command.ExecuteNonQuery();
 
-                command.ExecuteNonQuery();
+                if (kq < 0)
+                    return;
+                
+                sql = "CREATE USER U" + tbCMND.Text + " IDENTIFIED BY \""
+                    + dpNgaySinh.SelectedDate.Value.ToString("ddMMyyyy") +"\"";
+                if (Class.DB_Config.RunSQL(sql))
+                    return;
+
+                if (cbVaiTro.Text == "Bac si")
+                    sql = "GRANT BAC_SI TO U" + tbCMND.Text;
+                else if (cbVaiTro.Text == "Nghien cuu")
+                    sql = "GRANT NGHIEN_CUU TO U" + tbCMND.Text;
+                else if (cbVaiTro.Text == "Thanh tra")
+                    sql = "GRANT THANH_TRA TO U" + tbCMND.Text;
+                else if (cbVaiTro.Text == "CSYT")
+                    sql = "GRANT QL_CSYT TO U" + tbCMND.Text;
+                Class.DB_Config.RunSQL(sql);
                 MessageBox.Show("Thêm nhân viên thành công");
-                DSNhanVien nv = new DSNhanVien();
-                nv.Show();
+                //DSNhanVien nv = new DSNhanVien();
+                //nv.Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -63,8 +105,6 @@ namespace QLTT_CSYT
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            DSNhanVien nv = new DSNhanVien();
-            nv.Show();
             this.Close();
         }
     }

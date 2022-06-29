@@ -24,15 +24,16 @@ namespace QLTT_CSYT
         public DSNhanVien()
         {           
             InitializeComponent();
-            LayDSBenhNhan();
+            LayDSNhanVien();
         }
 
-        private void LayDSBenhNhan()
+        private void LayDSNhanVien()
         {
             try
             {
                 string sql = "SELECT * FROM QLTT.NHANVIEN";
                 tblNhanVien = Class.DB_Config.GetDataToTable(sql);
+                dgvDSNV.ItemsSource = null;
                 dgvDSNV.ItemsSource = tblNhanVien.DefaultView;
             }
 
@@ -90,8 +91,8 @@ namespace QLTT_CSYT
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             ThemNhanVien themNV = new ThemNhanVien();
-            themNV.Show();
-            this.Close();
+            themNV.ShowDialog();
+            LayDSNhanVien();
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
@@ -99,14 +100,15 @@ namespace QLTT_CSYT
             DataRowView NV_Selected = dgvDSNV.SelectedItem as DataRowView;
             int MaNV = Int32.Parse(NV_Selected.Row["MANV"].ToString());
             ChinhSuaNhanVien chinhSuaNV = new ChinhSuaNhanVien(MaNV);
-            chinhSuaNV.Show();
-            this.Close();
+            chinhSuaNV.ShowDialog();
+            LayDSNhanVien();
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             DataRowView NV_Selected = dgvDSNV.SelectedItem as DataRowView;
             string MaNV = NV_Selected.Row["MANV"].ToString();
+            string CMND = NV_Selected.Row["CMND"].ToString();
 
             string message = "Bạn có chắc muốn xoá nhân viên ?";
             // Thực hiện xoá nhân viên
@@ -115,7 +117,12 @@ namespace QLTT_CSYT
             {
                 string sql = "DELETE QLTT.NhanVien WHERE MaNV = " + MaNV;
 
-                Class.DB_Config.RunSqlDel(sql);
+                if (Class.DB_Config.RunSQL(sql))
+                {
+                    sql = "DROP USER U" + CMND + " CASCADE";
+                    Class.DB_Config.RunSQL(sql);
+                }
+                LayDSNhanVien();
             }
             return;
         }

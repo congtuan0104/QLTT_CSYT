@@ -20,49 +20,79 @@
         <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"
-                    Margin="0,20,0,0">
+                    Margin="0,58,0,0">
             <Button x:Name="btnAllUser"
                     Width="250"
                     Height="250"
-                    Margin="0,0,30,0">
-                <Button.Background>
-                    <ImageBrush ImageSource="/login_screen.png" />
-                </Button.Background>
+                    FontSize="24"
+                    Content="Quản lý user"
+                    Margin="0,0,30,0"
+                    Click="btnAllUser_Click"
+                    Background="#FF627DD2">
+
             </Button>
 
-            <Button Width="250"
+            <Button x:Name="btnPriv"
+                    Width="250"
                     Height="250"
-                    Margin="0,0,30,0">
-                <Button.Background>
-                    <ImageBrush ImageSource="/login_screen.png" />
-                </Button.Background>
+                    FontSize="24"
+                    Margin="0,0,30,0"
+                    Background="#FF627DD2"
+                    Click="btnPriv_Click">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap"
+                               Text="Xem quyền của user/role"
+                               TextAlignment="Center">
+                    </TextBlock>
+                </Button.Content>
             </Button>
 
-            <Button Width="250"
+            <Button x:Name="btnGrant"
+                    Width="250"
                     Height="250"
-                    Margin="0,0,30,0">
-                <Button.Background>
-                    <ImageBrush ImageSource="/login_screen.png" />
-                </Button.Background>
+                    Background="#FF627DD2"
+                    Margin="0,0,30,0"
+                    Click="btnGrant_Click">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap"
+                               FontSize="24"
+                               Text="Cấp quyền"
+                               TextAlignment="Center">
+                    </TextBlock>
+                </Button.Content>
             </Button>
 
-            <Button Width="250"
-                    Height="250">
-                <Button.Background>
-                    <ImageBrush ImageSource="/login_screen.png" />
-                </Button.Background>
+            <Button x:Name="btnMaHoa"
+                    Width="250"
+                    Background="#FF627DD2"
+                    Content="Mã hoá"
+                    FontSize="24"
+                    Height="250"
+                    Click="btnMaHoa_Click">
+
             </Button>
         </StackPanel>
         <Button x:Name="btnPH2"
+                Content="Quản lý dữ liệu"
+                FontSize="24"
                 Click="btnPH2_Click"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Width="250"
                 Height="250"
-                Margin="45,339,0,0">
-            <Button.Background>
-                <ImageBrush ImageSource="/login_screen.png" />
-            </Button.Background>
+                Margin="45,377,0,0"
+                Background="#FF627DD2">
+
         </Button>
+        <Button x:Name="btnAudit"
+                Content="Audit"
+                FontSize="24"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="250"
+                Height="250"
+                Margin="885,377,0,0"
+                Background="#FF627DD2"
+                Click="btnAudit_Click" />
     </Grid>
 </Window>

@@ -49,13 +49,23 @@ namespace QLTT_CSYT
                 command.Parameters.Add(":tinhtp", OracleDbType.NVarchar2).Value = tbThanhPho.Text;
                 command.Parameters.Add(":tiensubenh", OracleDbType.NVarchar2).Value = tbTSBenh.Text;
                 command.Parameters.Add(":tiensubenhgd", OracleDbType.NVarchar2).Value = tbTSBenhGD.Text;
-                command.Parameters.Add(":diungthuoc", OracleDbType.NVarchar2).Value = tbDiUng.Text;
-                
+                command.Parameters.Add(":diungthuoc", OracleDbType.NVarchar2).Value = tbDiUng.Text;              
+                int kq = command.ExecuteNonQuery();
 
-                command.ExecuteNonQuery();
+                if (kq < 0)
+                    return;
+                sql = "CREATE USER U" + tbCMND.Text + " IDENTIFIED BY \""
+                    + dpNgaySinh.SelectedDate.Value.ToString("ddMMyyyy") + "\"";
+                if (Class.DB_Config.RunSQL(sql))
+                {
+                    return;
+                }
+                    
+                sql = "GRANT BENH_NHAN TO U" + tbCMND.Text;
+                Class.DB_Config.RunSQL(sql);
                 MessageBox.Show("Thêm bệnh nhân thành công");
-                BenhNhan bn = new BenhNhan();
-                bn.Show();
+                //BenhNhan bn = new BenhNhan();
+                //bn.Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -66,8 +76,6 @@ namespace QLTT_CSYT
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            BenhNhan bn = new BenhNhan();
-            bn.Show();
             this.Close();
         }
     }

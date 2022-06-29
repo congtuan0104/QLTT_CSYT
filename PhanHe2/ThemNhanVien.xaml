@@ -85,10 +85,10 @@
                   Margin="50,34,0,0"
                   HorizontalAlignment="Left"
                   Grid.Row="1">
-            <ComboBoxItem IsSelected="True">Bác sĩ</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Bac si</ComboBoxItem>
             <ComboBoxItem>Thanh tra</ComboBoxItem>
             <ComboBoxItem>CSYT</ComboBoxItem>
-            <ComboBoxItem>Nghiên cứu</ComboBoxItem>
+            <ComboBoxItem>Nghien cuu</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="tbChuyenKhoa"
                  Width="110"

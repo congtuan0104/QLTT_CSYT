@@ -31,7 +31,7 @@ namespace QLTT_CSYT
         {
             dpNgayLap.SelectedDate = DateTime.Now;
             string sql = "SELECT CSYT FROM QLTT.NHANVIEN " +
-                "WHERE CMND = (SELECT sys_context('USERENV', 'CURRENT_USER') FROM dual)";
+                "WHERE 'U'||CMND = (SELECT sys_context('USERENV', 'CURRENT_USER') FROM dual)";
             DataTable dt = new DataTable();
             dt = Class.DB_Config.GetDataToTable(sql);
             if (dt.Rows.Count > 0)

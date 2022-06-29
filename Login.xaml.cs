@@ -55,31 +55,37 @@ namespace QLTT_CSYT
             else if (username == "cs")
             {   // QL_CSYT
                 username = "U231353133";
-                password = "1234";
+                password = "01042001";
             }
 
             else if (username == "bn")
             {   // Bệnh nhân
                 username = "U946301145";
-                password = "4321";
+                password = "13031953";
             }
 
             else if (username == "tt")
             {   // Thanh tra
                 username = "U232630930";
-                password = "1234";
+                password = "15111952";
             }
 
             else if (username == "nc")
             {   // Nghiên cứu
                 username = "U757592857";
-                password = "1234";
+                password = "08071994";
             }
 
             else if (username == "bs")
-            {   // Nghiên cứu
+            {   // Bác sĩ
                 username = "U868387298";
-                password = "1234";
+                password = "05101980";
+            }
+
+            else if (username == "gds")
+            {   // Giám đốc sở y tế
+                username = "U234567890";
+                password = "24031990";
             }
 
             bool isConnect = Class.DB_Config.Connect(username, password);
@@ -99,8 +105,27 @@ namespace QLTT_CSYT
                         this.Close();
                         return;
                     }
-                    // User chỉ có 1 role
-                    // -> [BENH_NHAN, BAC_SI, NGHIEN_CUU, QL_CSYT, THANH_TRA]
+
+                    //if(dt.Rows[0]["ROLE"].ToString() == "BENH_NHAN")
+                    //{
+                    //    sql = "SELECT TO_CHAR(NGAYSINH, 'ddMMyyyy') AS NS FROM QLTT.BENHNHAN " +
+                    //    "WHERE CMND = SUBSTR('" + username + "',2)";
+                    //}
+                    //else
+                    //{
+                    //    sql = "SELECT TO_CHAR(NGAYSINH, 'ddMMyyyy') AS NS FROM QLTT.NHANVIEN " +
+                    //    "WHERE CMND = SUBSTR('" + username + "',2)";
+                    //}
+                    
+                    //dt = Class.DB_Config.GetDataToTable(sql);
+                    //if(dt.Rows[0]["NS"].ToString() == password)
+                    //{
+                    //    MessageBox.Show("Lần đầu đăng nhập. Vui lòng đổi mật khẩu");
+                    //    Admin_ChangePass admin_ChangePass = new Admin_ChangePass(username);
+                    //    admin_ChangePass.Show();
+                    //    this.Close();
+                    //    return;
+                    //}
                     Menu menu = new Menu();
                     menu.Show();
                     this.Close();

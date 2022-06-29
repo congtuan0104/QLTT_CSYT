@@ -80,8 +80,6 @@ namespace QLTT_CSYT
                 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Cập nhật thành công");
-                BenhNhan bn = new BenhNhan();
-                bn.Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -92,8 +90,6 @@ namespace QLTT_CSYT
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            BenhNhan bn = new BenhNhan();
-            bn.Show();
             this.Close();
         }
 
@@ -104,7 +100,7 @@ namespace QLTT_CSYT
                 if (tbMaBN.Text == null || tbMaBN.Text.Length == 0)
                     return;
                 DataTable dt = new DataTable();
-                string sql = "Select DIUNGTHUOC from QLTT.BENHNHAN WHERE MaBN = " + tbMaBN.Text;
+                string sql = "Select DIUNGTHUOC from QLTT.BENHNHAN WHERE MaBN = " + Int32.Parse(tbMaBN.Text);
                 dt = Class.DB_Config.GetDataToTable(sql);
                 tbDiUng.Text = dt.Rows[0]["DIUNGTHUOC"].ToString();
             }
@@ -123,7 +119,7 @@ namespace QLTT_CSYT
                     return;
                 DataTable dt = new DataTable();
                 string sql = "Select QLTT.ENCRYPT_DECRYPT.DECRYPT_BENHNHAN(DIUNGTHUOC, CMND)" +
-                    "AS \"DIUNGTHUOC\" from QLTT.BENHNHAN WHERE MaBN = " + tbMaBN.Text;
+                    "AS \"DIUNGTHUOC\" from QLTT.BENHNHAN WHERE MaBN = " + Int32.Parse(tbMaBN.Text);
                 dt = Class.DB_Config.GetDataToTable(sql);
                 tbDiUng.Text = dt.Rows[0]["DIUNGTHUOC"].ToString();
             }

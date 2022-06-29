@@ -58,8 +58,6 @@ namespace QLTT_CSYT
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            DSNhanVien nv = new DSNhanVien();
-            nv.Show();
             this.Close();
         }
 
@@ -88,8 +86,6 @@ namespace QLTT_CSYT
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Cập nhật thành công");
-                DSNhanVien nv = new DSNhanVien();
-                nv.Show();
                 this.Close();
             }
             catch (Exception ex)

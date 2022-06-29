@@ -41,23 +41,31 @@
 
 
                             <ListBoxItem Height="44">
-                                <TextBlock Text="HOME"
+                                <TextBlock Text="Trang chủ"
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
-                                <TextBlock Text="ALL USERS"
+                                <TextBlock Text="Quản lý user"
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
-                                <TextBlock Text="USER/ROLE PRIVILEGES"
+                                <TextBlock Text="Xem quyền chủ thể"
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
-                                <TextBlock Text="GRANT/REVOKE PRIVILEGES"
+                                <TextBlock Text="Gán/Thu hồi quyền"
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
-                                <TextBlock Text="LOG OUT"
+                                <TextBlock Text="Mã hoá"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="Audit"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="Đăng xuất"
                                            FontSize="16" />
                             </ListBoxItem>
                         </ListBox>
@@ -85,34 +93,18 @@
                                    FontSize="24"
                                    HorizontalAlignment="Left">
                         </TextBlock>
-                        <materialDesign:ColorZone Mode="Standard"
-                                                  Padding="8 4 8 4"
-                                                  Width="369"
+                        <materialDesign:ColorZone x:Name="datetime"
+                                                  Mode="Standard"
+                                                  Padding="8 6 8 6"
+                                                  Width="461"
                                                   CornerRadius="5"
                                                   Panel.ZIndex="1"
                                                   materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Button Style="{DynamicResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="Search"
-                                                             Opacity=".56"
-                                                             Height="22"
-                                                             Width="22" />
-                                </Button>
-                                <TextBox Grid.Column="1"
-                                         Margin="8 0 0 0"
-                                         materialDesign:HintAssist.Hint="Nhập thông tin cần tìm"
-                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                         BorderThickness="0"
-                                         MinWidth="200"
-                                         FontSize="14"
-                                         VerticalAlignment="Center" />
-
-                            </Grid>
+                            <TextBlock x:Name="txtTime"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center" />
                         </materialDesign:ColorZone>
 
                         <Button x:Name="btnClose"
@@ -131,7 +123,7 @@
                                                      Foreground="White" />
 
                         </Button>
-                        <TextBlock Text="Admin"
+                        <TextBlock Text="QLTT (Admin)"
                                    Margin="3,0,40,0"
                                    FontSize="22"
                                    DockPanel.Dock="Right"
@@ -152,7 +144,7 @@
 
                     <Frame x:Name="frBody"
                            NavigationUIVisibility="Hidden">
-                           
+
                     </Frame>
 
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
@@ -163,6 +155,6 @@
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
-
+        
     </Grid>
 </Window>

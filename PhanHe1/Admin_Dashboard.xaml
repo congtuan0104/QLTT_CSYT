@@ -90,7 +90,7 @@
                 Click="btnObject_Click">
             <Button.Content>
                 <TextBlock TextWrapping="Wrap"
-                           Text="User Objects"
+                           Text="Quản lý tài nguyên (User Objects)"
                            Width="215"
                            TextAlignment="Center" />
             </Button.Content>

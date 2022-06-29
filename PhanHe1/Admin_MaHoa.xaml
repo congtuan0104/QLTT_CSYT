@@ -1,0 +1,35 @@
+﻿<Window x:Class="QLTT_CSYT.Admin_MaHoa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:QLTT_CSYT"
+        mc:Ignorable="d"
+        Title="Admin_MaHoa"
+        Height="693"
+        Width="1180">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center"
+                   Margin="0,31,0,0"
+                   TextWrapping="Wrap"
+                   FontSize="26"
+                   Foreground="#FFC92020"
+                   Text="MÃ HÓA"
+                   VerticalAlignment="Top"
+                   FontWeight="Bold" />
+        <DataGrid x:Name="dgvMaHoa"
+                  IsReadOnly="True"
+                  Background="#FFE8EDE0"
+                  AutoGenerateColumns="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top"
+                  Width="955"
+                  Height="438"
+                  Margin="0,124,0,0" />
+    </Grid>
+</Window>
+

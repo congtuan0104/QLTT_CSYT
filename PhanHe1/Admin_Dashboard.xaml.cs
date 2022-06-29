@@ -52,7 +52,10 @@ namespace QLTT_CSYT
 
         private void btnMaHoa_Click(object sender, RoutedEventArgs e)
         {
-
+            Admin_Main mw = Application.Current.Windows[0] as Admin_Main;
+            Admin_MaHoa admin_MaHoa = new Admin_MaHoa();
+            mw.frBody.Content = admin_MaHoa.Content;
+            mw.txtTitle.Text = "Mã hoá";
         }
 
         private void btnAudit_Click(object sender, RoutedEventArgs e)

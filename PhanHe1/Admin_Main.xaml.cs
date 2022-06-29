@@ -83,7 +83,9 @@ namespace QLTT_CSYT
             
             else if (select == "Mã hoá")
             {
-
+                Admin_MaHoa admin_MaHoa = new Admin_MaHoa();
+                frBody.Content = admin_MaHoa.Content;
+                txtTitle.Text = "Mã hoá";
             }
             else if (select == "Audit")
             {

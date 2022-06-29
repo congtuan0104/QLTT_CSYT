@@ -40,6 +40,11 @@ namespace QLTT_CSYT
                 txtRole.Text = "Admin";
                 return;
             }
+            if (dt.Rows.Count == 0)
+            {
+                txtRole.Text = "Giám đốc sở";
+                return;
+            }
             txtRole.Text = dt.Rows[0]["ROLE"].ToString();
         }
 

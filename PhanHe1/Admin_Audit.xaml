@@ -16,23 +16,68 @@
         Title="Audit"
         Height="693"
         Width="1180">
-    <StackPanel Orientation="Horizontal">
+    <Grid>
+        <Button x:Name="En_Audit"
+                Content="Enable Audit System"
+                Margin="501,81,499,564"
+                FontSize="16"
+                Click="En_Audit_Click" />
+        <Button x:Name="Dis_Audit"
+                Content="Disable Audit System"
+                Margin="710,82,285,563"
+                FontSize="16"
+                Click="Dis_Audit_Click" />
         <DataGrid x:Name="dgvAudit"
                   ItemsSource="{Binding}"
-                  Height="422"
-                  Width="950"
                   AutoGenerateColumns="True"
                   CanUserAddRows="False"
                   SelectionUnit="FullRow"
                   SelectionMode="Extended"
-                  Margin="20,0,20,0"
+                  Margin="56,133,64,55"
                   FontSize="14"
                   IsReadOnly="True"
                   materialDesign:DataGridAssist.CellPadding="24 14 14 14"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14"/>
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14" />
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="29,88,0,0"
+                   TextWrapping="Wrap"
+                   Text="Loại audit"
+                   VerticalAlignment="Top"
+                   Height="39"
+                   Width="130"
+                   FontSize="16"
+                   TextAlignment="Center"
+                   RenderTransformOrigin="0.548,1.059" />
+        <RadioButton x:Name="rd_Standard"
+                     Content="Standard Audit"
+                     HorizontalAlignment="Left"
+                     Margin="203,86,0,0"
+                     VerticalAlignment="Top"
+                     FontSize="16"
+                     RenderTransformOrigin="0.525,1.351"
+                     Checked="rd_Standard_Checked" />
+        <RadioButton x:Name="rd_FGA"
+                     Content="FGA"
+                     HorizontalAlignment="Left"
+                     Margin="393,86,0,0"
+                     VerticalAlignment="Top"
+                     RenderTransformOrigin="0.896,1.125"
+                     FontSize="16"
+                     Checked="rd_FGA_Checked" />
+        <Label Content="LỊCH SỬ AUDIT"
+               HorizontalAlignment="Left"
+               Margin="504,25,0,0"
+               VerticalAlignment="Top"
+               Width="181"
+               Height="43"
+               FontSize="22"
+               Foreground="#FFE71717"
+               FontWeight="Bold" />
+        <Button x:Name="btnXoa"
+                Content="Xoá lịch sử Audit"
+                Margin="931,82,64,563"
+                FontSize="16"/>
 
-
-       
-
-    </StackPanel>
+    </Grid>
 </Window>
+

@@ -106,26 +106,26 @@ namespace QLTT_CSYT
                         return;
                     }
 
-                    //if(dt.Rows[0]["ROLE"].ToString() == "BENH_NHAN")
-                    //{
-                    //    sql = "SELECT TO_CHAR(NGAYSINH, 'ddMMyyyy') AS NS FROM QLTT.BENHNHAN " +
-                    //    "WHERE CMND = SUBSTR('" + username + "',2)";
-                    //}
-                    //else
-                    //{
-                    //    sql = "SELECT TO_CHAR(NGAYSINH, 'ddMMyyyy') AS NS FROM QLTT.NHANVIEN " +
-                    //    "WHERE CMND = SUBSTR('" + username + "',2)";
-                    //}
-                    
-                    //dt = Class.DB_Config.GetDataToTable(sql);
-                    //if(dt.Rows[0]["NS"].ToString() == password)
-                    //{
-                    //    MessageBox.Show("Lần đầu đăng nhập. Vui lòng đổi mật khẩu");
-                    //    Admin_ChangePass admin_ChangePass = new Admin_ChangePass(username);
-                    //    admin_ChangePass.Show();
-                    //    this.Close();
-                    //    return;
-                    //}
+                    if (dt.Rows[0]["ROLE"].ToString() == "BENH_NHAN")
+                    {
+                        sql = "SELECT TO_CHAR(NGAYSINH, 'ddMMyyyy') AS NS FROM QLTT.BENHNHAN " +
+                        "WHERE CMND = SUBSTR('" + username + "',2)";
+                    }
+                    else
+                    {
+                        sql = "SELECT TO_CHAR(NGAYSINH, 'ddMMyyyy') AS NS FROM QLTT.NHANVIEN " +
+                        "WHERE CMND = SUBSTR('" + username + "',2)";
+                    }
+
+                    dt = Class.DB_Config.GetDataToTable(sql);
+                    if (dt.Rows[0]["NS"].ToString() == password)
+                    {
+                        MessageBox.Show("Lần đầu đăng nhập. Vui lòng đổi mật khẩu");
+                        Admin_ChangePass admin_ChangePass = new Admin_ChangePass(username);
+                        admin_ChangePass.Show();
+                        this.Close();
+                        return;
+                    }
                     Menu menu = new Menu();
                     menu.Show();
                     this.Close();

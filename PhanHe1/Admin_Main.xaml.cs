@@ -86,7 +86,9 @@ namespace QLTT_CSYT
             }
             else if (select == "Audit")
             {
-
+                Admin_Audit admin_Audit = new Admin_Audit();
+                frBody.Content = admin_Audit.Content;
+                txtTitle.Text = "Audit";
             }
             else if (select == "Đăng xuất")
             {

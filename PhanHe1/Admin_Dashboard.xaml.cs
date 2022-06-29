@@ -64,7 +64,10 @@ namespace QLTT_CSYT
 
         private void btnAudit_Click(object sender, RoutedEventArgs e)
         {
-
+            Admin_Main mw = Application.Current.Windows[0] as Admin_Main;
+            Admin_Audit admin_audit = new Admin_Audit();
+            mw.frBody.Content = admin_audit.Content;
+            mw.txtTitle.Text = "Audit";
         }
     }
 }

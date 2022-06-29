@@ -1,0 +1,38 @@
+﻿<Window x:Class="QLTT_CSYT.Admin_Audit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTT_CSYT"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FFE5E5E5"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="Audit"
+        Height="693"
+        Width="1180">
+    <StackPanel Orientation="Horizontal">
+        <DataGrid x:Name="dgvAudit"
+                  ItemsSource="{Binding}"
+                  Height="422"
+                  Width="950"
+                  AutoGenerateColumns="True"
+                  CanUserAddRows="False"
+                  SelectionUnit="FullRow"
+                  SelectionMode="Extended"
+                  Margin="20,0,20,0"
+                  FontSize="14"
+                  IsReadOnly="True"
+                  materialDesign:DataGridAssist.CellPadding="24 14 14 14"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="24 14 14 14"/>
+
+
+       
+
+    </StackPanel>
+</Window>

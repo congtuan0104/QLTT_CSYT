@@ -72,6 +72,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,6 +91,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin_CreateTable.xaml.cs">
+      <DependentUpon>Admin_CreateTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHe1\Admin_Object.xaml.cs">
+      <DependentUpon>Admin_Object.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhanHe1\Admin_Audit.xaml.cs">
       <DependentUpon>Admin_Audit.xaml</DependentUpon>
     </Compile>
@@ -135,6 +142,14 @@
     <Compile Include="PhanHe2\ThemDV_HSBA.xaml.cs">
       <DependentUpon>ThemDV_HSBA.xaml</DependentUpon>
     </Compile>
+    <Page Include="Admin_CreateTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhanHe1\Admin_Object.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PhanHe1\Admin_Audit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

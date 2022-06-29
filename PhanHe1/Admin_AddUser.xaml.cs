@@ -23,8 +23,22 @@ namespace QLTT_CSYT
         public Admin_AddUser()
         {
             InitializeComponent();
+            DSRole();
 
+        }
 
+        private void DSRole()
+        {
+            string sql = "SELECT GRANTED_ROLE AS ROLE FROM USER_ROLE_PRIVS WHERE GRANTED_ROLE != 'RESOURCE'";
+            DataTable dt = new DataTable();
+            dt = Class.DB_Config.GetDataToTable(sql);
+            cbRole.Items.Clear();
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                cbRole.Items.Add(dt.Rows[i]["ROLE"]);
+            }
+            //cbRole.ItemsSource = null;
+            //cbRole.ItemsSource = dt.DefaultView;
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -32,8 +46,9 @@ namespace QLTT_CSYT
             if (user.IsChecked == true)
             {
                 string username = txbUser.Text.ToString();
-                string password = txbPass.Text.ToString();
-                string role = cbRole.Text.ToString();
+                string password = txbPass.Password.ToString();
+
+                string role = cbRole.SelectedValue.ToString();
                 string sql;
 
                 //sql = "ALTER SESSION SET \"_ORACLE_SCRIPT\" = true";
@@ -52,7 +67,7 @@ namespace QLTT_CSYT
 
                 Class.DB_Config.RunSqlDel(sql);
 
-                if (role != "KHONG")
+                if (cbRole.SelectedIndex>=0)
                 {
                     if (((username[0] >= 'a') && (username[0] <= 'z')) || ((username[0] >= 'A') && (username[0] <= 'Z')))
                     {

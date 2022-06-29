@@ -20,6 +20,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         WindowStyle="None">
+    
     <Window.Clip>
         <RectangleGeometry Rect="0,0,1180,750"
                            RadiusX="10"
@@ -45,7 +46,11 @@
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">
-                                <TextBlock Text="Quản lý user"
+                                <TextBlock Text="Danh sách đối tượng"
+                                           FontSize="16" />
+                            </ListBoxItem>
+                            <ListBoxItem Height="44">
+                                <TextBlock Text="Quản lý user và role"
                                            FontSize="16" />
                             </ListBoxItem>
                             <ListBoxItem Height="44">

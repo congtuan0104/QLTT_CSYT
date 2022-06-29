@@ -25,7 +25,7 @@
                     Width="250"
                     Height="250"
                     FontSize="24"
-                    Content="Quản lý user"
+                    Content="Quản lý user/role"
                     Margin="0,0,30,0"
                     Click="btnAllUser_Click"
                     Background="#FF627DD2">
@@ -56,7 +56,8 @@
                 <Button.Content>
                     <TextBlock TextWrapping="Wrap"
                                FontSize="24"
-                               Text="Cấp quyền"
+                               Text="Cấp quyền 
+                               Thu hồi quyền"
                                TextAlignment="Center">
                     </TextBlock>
                 </Button.Content>
@@ -94,5 +95,21 @@
                 Margin="885,377,0,0"
                 Background="#FF627DD2"
                 Click="btnAudit_Click" />
+        <Button x:Name="btnObject"
+                FontSize="24"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="250"
+                Height="250"
+                Margin="323,377,0,0"
+                Background="#FF627DD2"
+                Click="btnObject_Click">
+            <Button.Content>
+                <TextBlock TextWrapping="Wrap"
+                    Text="User Objects"
+                           Width="215"
+                           TextAlignment="Center" />
+            </Button.Content>
+        </Button>
     </Grid>
 </Window>

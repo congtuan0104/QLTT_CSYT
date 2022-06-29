@@ -28,26 +28,32 @@ namespace QLTT_CSYT
         public Admin_UserList()
         {
             InitializeComponent();
+            DSUser();
+            DSRole();
         }
 
-        private void Admin_User_Loading(object sender, EventArgs e)
-        {
-            LoadDataGridView();
-            //dgvUser.Columns[0].Header = "Username";
-            //dgvUser.Columns[1].Header = "Status";
-            //dgvUser.Columns[2].Header = "Created date";
-            //dgvUser.Columns[3].Header = "Expiry Date";
-            //dgvUser.Columns[4].Header = "Last Login";
-        }
-
-        private void LoadDataGridView()
+        private void DSRole()
         {
             string sql;
-            sql = "SELECT USERNAME, ACCOUNT_STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
-                "FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'USERS'";
+            sql = "SELECT GRANTED_ROLE AS ROLE FROM USER_ROLE_PRIVS WHERE GRANTED_ROLE != 'RESOURCE'";
+            DataTable dt = Class.DB_Config.GetDataToTable(sql); //Đọc dữ liệu từ bảng
+            dgvRole.ItemsSource = null;
+            dgvRole.ItemsSource = dt.DefaultView; //Nguồn dữ liệu
+        }
 
+        
+
+        private void DSUser()
+        {
+            string sql;
+            sql = "SELECT USERNAME, ACCOUNT_STATUS AS STATUS, CREATED, EXPIRY_DATE, LAST_LOGIN " +
+                "FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'USERS'";
+            if(cbOnly.IsChecked == false)
+            {
+                sql = sql + " AND USERNAME LIKE 'U%'";
+            }
             tblUser = Class.DB_Config.GetDataToTable(sql); //Đọc dữ liệu từ bảng
-            
+            dgvUser.ItemsSource = null;
             dgvUser.ItemsSource = tblUser.DefaultView; //Nguồn dữ liệu
 
             dgvUser.Items.SortDescriptions.Clear();
@@ -55,7 +61,7 @@ namespace QLTT_CSYT
             dgvUser.Items.Refresh();
 
             btnDeleteUser.IsEnabled = false;
-            btnDetail.IsEnabled = false;
+            btnGrant.IsEnabled = false;
             btnChangePass.IsEnabled = false;
             btnLock.IsEnabled = false;
             btnUnlock.IsEnabled = false;
@@ -65,7 +71,11 @@ namespace QLTT_CSYT
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             Admin_AddUser admin_AddUser = new Admin_AddUser();
-            admin_AddUser.Show();
+            admin_AddUser.ShowDialog();
+            DSUser();
+            DSRole();
+            btnGrant.IsEnabled = false;
+            btnDeleteUser.IsEnabled=false;
         }
 
 
@@ -74,8 +84,9 @@ namespace QLTT_CSYT
             if (dgvUser.SelectedIndex < 0)
                 return;
             btnDeleteUser.IsEnabled = true;
-            btnDetail.IsEnabled = true;
+            btnGrant.IsEnabled = true;
             btnChangePass.IsEnabled = true;
+            dgvRole.SelectedIndex = -1;
 
             DataRowView curRow = dgvUser.SelectedItem as DataRowView;
 
@@ -97,7 +108,30 @@ namespace QLTT_CSYT
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             string sql;
-            if (MessageBox.Show("Xác nhận xoá tài khoản này!!!", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if(dgvRole.SelectedIndex >= 0)
+            {
+                DataRowView curRow = dgvRole.SelectedItem as DataRowView;
+                string Role = curRow.Row.ItemArray[0].ToString();
+                if (MessageBox.Show("Xác nhận xoá role "+ Role, "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    if (((Role[0] >= 'a') && (Role[0] <= 'z')) || ((Role[0] >= 'A') && (Role[0] <= 'Z')))
+                    {
+                        sql = "DROP ROLE " + Role;
+                    }
+                    else
+                    {
+                        sql = "DROP ROLE \"" + Role + "\"";
+                    }
+
+                    Class.DB_Config.RunSqlDel(sql);
+                    DSRole();
+                    btnGrant.IsEnabled = false;
+                    btnDeleteUser.IsEnabled = false;
+                }
+                return;
+            }
+
+            if (MessageBox.Show("Xác nhận xoá user "+ Username, "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 //sql = "alter session set \"_oracle_script\"=true";              
                 //Class.DB_Config.RunSqlDel(sql);
@@ -111,7 +145,9 @@ namespace QLTT_CSYT
                 }
 
                 Class.DB_Config.RunSqlDel(sql);
-                LoadDataGridView();
+                DSUser();
+                btnGrant.IsEnabled = false;
+                btnDeleteUser.IsEnabled = false;
             }
         }
 
@@ -130,7 +166,9 @@ namespace QLTT_CSYT
                 sql = "ALTER USER \"" + Username + "\" ACCOUNT LOCK";
             }
             Class.DB_Config.RunSqlDel(sql);
-            LoadDataGridView();
+            DSUser();
+            btnGrant.IsEnabled = false;
+            btnDeleteUser.IsEnabled = false;
         }
 
         private void btnUnlock_Click(object sender, RoutedEventArgs e)
@@ -148,13 +186,37 @@ namespace QLTT_CSYT
             }
 
             Class.DB_Config.RunSqlDel(sql);
-            LoadDataGridView();
+            DSUser();
+            btnGrant.IsEnabled = false;
+            btnDeleteUser.IsEnabled = false;
         }
 
         private void btnChangePass_Click(object sender, RoutedEventArgs e)
         {
             Admin_ChangePass admin_ChangePass = new Admin_ChangePass(Username);
             admin_ChangePass.ShowDialog();
+        }
+
+        private void dgvRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgvRole.SelectedIndex < 0)
+                return;
+            btnDeleteUser.IsEnabled = true;
+            btnGrant.IsEnabled = true;
+            btnChangePass.IsEnabled = false;
+            btnUnlock.IsEnabled = false;
+            btnLock.IsEnabled = false;
+            dgvUser.SelectedIndex = -1;
+
+            DataRowView curRow = dgvRole.SelectedItem as DataRowView;
+            string Role = curRow.Row.ItemArray[0].ToString();
+        }
+
+        private void cbChange(object sender, RoutedEventArgs e)
+        {
+            DSUser();
+            btnGrant.IsEnabled = false;
+            btnDeleteUser.IsEnabled = false;
         }
     }
 }

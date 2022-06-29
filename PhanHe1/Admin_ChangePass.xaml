@@ -39,7 +39,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,20"
-                       Text="CHANGE PASSWORD "
+                       Text="ĐỔI MẬT KHẨU"
                        FontSize="24"
                        TextAlignment="Center"
                        Foreground="#FF0202B7"
@@ -50,20 +50,20 @@
             <TextBox x:Name="tbUsername"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
-                     materialDesign:HintAssist.Hint="Username"
+                     materialDesign:HintAssist.Hint="Tên đăng nhập"
                      IsReadOnly="True"
                      Background="White" />
             <PasswordBox x:Name="tbPass"
                          Margin="0,15,0,0"
                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                          VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="New Password"
+                         materialDesign:HintAssist.Hint="Nhập mật khẩu mới"
                          Background="White" />
             <PasswordBox x:Name="tbCPass"
                          Margin="0,15,0,10"
                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                          VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Confirm new Password"
+                         materialDesign:HintAssist.Hint="ác nhận mật khẩu"
                          Background="White" />
 
             <Grid>
@@ -81,7 +81,7 @@
                         ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Click="btnSave_Click">
-                    <TextBlock Text="Save" />
+                    <TextBlock Text="Lưu" />
                 </Button>
 
                 <Button x:Name="btnClose"
@@ -94,7 +94,7 @@
                         ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Click="btnClose_Click">
-                    <TextBlock Text="Cancel" />
+                    <TextBlock Text="Huỷ" />
                 </Button>
 
             </Grid>

@@ -38,7 +38,7 @@ namespace QLTT_CSYT
             Admin_Main mw = Application.Current.Windows[0] as Admin_Main;
             Admin_UserList admin_UserList = new Admin_UserList();
             mw.frBody.Content = admin_UserList.Content;
-            mw.txtTitle.Text = "Quản lý user";
+            mw.txtTitle.Text = "Quản lý user và role";
         }
 
         private void btnPriv_Click(object sender, RoutedEventArgs e)
@@ -68,6 +68,14 @@ namespace QLTT_CSYT
             Admin_Audit admin_audit = new Admin_Audit();
             mw.frBody.Content = admin_audit.Content;
             mw.txtTitle.Text = "Audit";
+        }
+
+        private void btnObject_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Main mw = Application.Current.Windows[0] as Admin_Main;
+            Admin_Object admin_ob = new Admin_Object();
+            mw.frBody.Content = admin_ob.Content;
+            mw.txtTitle.Text = "Danh sách đối tượng";
         }
     }
 }

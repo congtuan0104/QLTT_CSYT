@@ -62,11 +62,17 @@ namespace QLTT_CSYT
                 frBody.Content = admin_Dashboard.Content;
                 txtTitle.Text = "Trang chủ";
             }
-            else if (select == "Quản lý user")
+            else if (select == "Danh sách đối tượng")
+            {
+                Admin_Object admin_ob = new Admin_Object();
+                frBody.Content = admin_ob.Content;
+                txtTitle.Text = "Danh sách đối tượng";
+            }
+            else if (select == "Quản lý user và role")
             {
                 Admin_UserList admin_UserList = new Admin_UserList();
                 frBody.Content = admin_UserList.Content;
-                txtTitle.Text = "Quản lý user";
+                txtTitle.Text = "Quản lý user và role";
             }
             else if(select == "Xem quyền chủ thể")
             {

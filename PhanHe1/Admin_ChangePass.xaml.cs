@@ -32,19 +32,19 @@ namespace QLTT_CSYT
             string cpass = tbCPass.Password;
             if (pass == null)
             {
-                txtWarning.Text = "The password field is required";
+                txtWarning.Text = "Bạn chưa nhập mật khẩu";
                 txtWarning.Foreground=Brushes.Red;
                 return;
             }
             if (cpass == null)
             {
-                txtWarning.Text = "The confirm password field is required";
+                txtWarning.Text = "Bạn chưa xác nhận mật khẩu";
                 txtWarning.Foreground = Brushes.Red;
                 return;
             }
             if (pass != cpass)
             {
-                txtWarning.Text = "Confirm password must same value with new password";
+                txtWarning.Text = "Xác nhận mật khẩu sai";
                 txtWarning.Foreground = Brushes.Red;
                 return;
             }
